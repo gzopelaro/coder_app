@@ -5,8 +5,10 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
-        <Text style={styles.icon}>{"</>"}</Text>
-        <Image src="../../assets/ciandt_logo.png" />
+        <Image
+          source={require("../../assets/ciandt_logo.png")}
+          style={styles.logo}
+        />
       </View>
       <Text style={styles.title}>Coder AI</Text>
       <Text style={styles.subtitle}>Building your future with Coder.</Text>
@@ -27,9 +29,9 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   iconContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 100,
+    height: 100,
+    borderRadius: 100,
     backgroundColor: "#1E293B",
     alignItems: "center",
     justifyContent: "center",
@@ -44,6 +46,12 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "bold",
     color: "#F8F7F4",
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
+    maxHeight: 60,
+    maxWidth: 80,
   },
   title: {
     fontSize: 36,
