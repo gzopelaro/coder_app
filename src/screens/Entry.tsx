@@ -1,7 +1,21 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/RootStack";
 
-export default function Home() {
+type EntryNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Entry"
+>;
+
+export default function Entry() {
+  const navigation = useNavigation<EntryNavigationProp>();
+
+  const handleStartNow = () => {
+    navigation.navigate("Home");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
@@ -12,9 +26,10 @@ export default function Home() {
       </View>
       <Text style={styles.title}>Coder AI</Text>
       <Text style={styles.subtitle}>Building your future with Coder.</Text>
-      <View style={styles.card}>
+
+      <TouchableOpacity style={styles.card} onPress={handleStartNow}>
         <Text style={styles.cardText}>Start now</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -41,11 +56,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 5,
-  },
-  icon: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#F8F7F4",
   },
   logo: {
     width: "100%",
