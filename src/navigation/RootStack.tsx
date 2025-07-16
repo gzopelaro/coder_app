@@ -5,10 +5,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native";
 import Entry from "../screens/Entry";
 import Home from "../screens/Home";
+import HowToRun from "../screens/HowToRun";
+import HowToAuthenticate from "../screens/HowToAuthenticate";
+import HowToInstall from "../screens/HowToInstall";
+import BestPractices from "../screens/BestPractices";
 
 export type RootStackParamList = {
   Entry: undefined;
   Home: undefined;
+  HowToInstall: undefined;
+  HowToAuthenticate: undefined;
+  HowToRun: undefined;
+  BestPractices: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,7 +50,39 @@ export default function RootStack() {
             component={Home}
             options={{
               title: "Home",
-              headerShown: true,
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="HowToInstall"
+            component={HowToInstall}
+            options={{
+              title: "HowToInstall",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="HowToAuthenticate"
+            component={HowToAuthenticate}
+            options={{
+              title: "HowToAuthenticate",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="HowToRun"
+            component={HowToRun}
+            options={{
+              title: "HowToRun",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="BestPractices"
+            component={BestPractices}
+            options={{
+              title: "BestPractices",
+              headerShown: false,
             }}
           />
         </Stack.Navigator>
