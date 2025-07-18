@@ -22,6 +22,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import CodeBlock from "../components/CodeBlock";
 import Section from "../components/Section";
 import { theme } from "../theme";
+import BackButton from "../components/BackButton";
 
 type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -32,172 +33,168 @@ export default function HowToAuthenticate() {
   const navigation = useNavigation<HowToAuthenticateNavigationProp>();
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
-      showsVerticalScrollIndicator={false}
-    >
+    <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-          activeOpacity={0.7}
-        >
-          <ArrowLeft size={20} color="#F8F7F4" style={{ opacity: 0.8 }} />
-          <Text style={styles.backButtonText}>Back</Text>
-        </TouchableOpacity>
+        <BackButton />
+      </View>
 
-        <View style={styles.titleContainer}>
-          <View style={styles.titleRow}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.heroSection}>
+          <View style={styles.heroIconContainer}>
             <Key size={32} color={theme.colors.action.warning} />
-            <Text style={styles.title}>How to Authenticate</Text>
           </View>
-          <Text style={styles.subtitle}>
+          <Text style={styles.heroTitle}>How to Authenticate</Text>
+          <Text style={styles.heroSubtitle}>
             Complete guide to authenticate with the Coder CLI tool
           </Text>
         </View>
-      </View>
 
-      <View style={styles.content}>
-        <Section
-          title="Step 1: Generate an API Key"
-          icon={<Key size={20} color="#F59E0B" />}
-        >
-          <Text style={styles.bodyText}>
-            Visit the Flow API Keys page to generate your API key
-            (client/secret).
-          </Text>
-          <View style={styles.linkBox}>
-            <ExternalLink size={16} color="#3B82F6" />
-            <Text style={styles.linkText}>Flow API Keys</Text>
-          </View>
-          <View style={styles.infoBox}>
-            <Info size={16} color="#3B82F6" />
-            <Text style={styles.infoText}>
-              You'll need both a client ID and client secret for authentication.
-              Make sure to save these credentials securely.
+        <View style={styles.content}>
+          <Section
+            title="Step 1: Generate an API Key"
+            icon={<Key size={20} color="#F59E0B" />}
+          >
+            <Text style={styles.bodyText}>
+              Visit the Flow API Keys page to generate your API key
+              (client/secret).
             </Text>
-          </View>
-        </Section>
+            <View style={styles.linkBox}>
+              <ExternalLink size={16} color="#3B82F6" />
+              <Text style={styles.linkText}>Flow API Keys</Text>
+            </View>
+            <View style={styles.infoBox}>
+              <Info size={16} color="#3B82F6" />
+              <Text style={styles.infoText}>
+                You'll need both a client ID and client secret for
+                authentication. Make sure to save these credentials securely.
+              </Text>
+            </View>
+          </Section>
 
-        <Section
-          title="Step 2: Add Your Tenant"
-          icon={<Shield size={20} color="#10B981" />}
-        >
-          <Text style={styles.bodyText}>
-            Execute the following command to add a new tenant with its API key
-            and set it as the active tenant:
-          </Text>
-          <CodeBlock title="Authentication Command">
-            {`coder auth add --tenant <your_tenant> --client <your_client_id> --secret <your_client_secret>`}
-          </CodeBlock>
-          <Text style={styles.bodyText}>
-            Replace the placeholders with your actual values:
-          </Text>
-          <View style={styles.requirementCard}>
-            <Text style={styles.requirementText}>
-              • <Text style={styles.inlineCode}>{"<your_tenant>"}</Text> - Your
-              tenant name
+          <Section
+            title="Step 2: Add Your Tenant"
+            icon={<Shield size={20} color="#10B981" />}
+          >
+            <Text style={styles.bodyText}>
+              Execute the following command to add a new tenant with its API key
+              and set it as the active tenant:
             </Text>
-            <Text style={styles.requirementText}>
-              • <Text style={styles.inlineCode}>{"<your_client_id>"}</Text> -
-              Your client ID from the API keys page
-            </Text>
-            <Text style={styles.requirementText}>
-              • <Text style={styles.inlineCode}>{"<your_client_secret>"}</Text>{" "}
-              - Your client secret from the API keys page
-            </Text>
-          </View>
-        </Section>
-
-        <Section
-          title="Step 3: Verify Authentication"
-          icon={<CheckCircle size={20} color="#10B981" />}
-        >
-          <Text style={styles.bodyText}>
-            Check if your authentication was successful by running:
-          </Text>
-          <CodeBlock title="Verification Command">coder auth list</CodeBlock>
-          <Text style={styles.bodyText}>
-            This command will show all configured tenants and indicate which one
-            is currently active.
-          </Text>
-        </Section>
-
-        <Section
-          title="Example Usage"
-          icon={<ExternalLink size={20} color="#8B5CF6" />}
-        >
-          <Text style={styles.bodyText}>
-            Here's a complete example of how to authenticate:
-          </Text>
-          <CodeBlock title="Complete Example">
-            {`coder auth add --tenant mycompany --client abc123def456 --secret xyz789secretkey`}
-          </CodeBlock>
-          <Text style={styles.exampleText}>
-            Replace <Text style={styles.inlineCode}>mycompany</Text>,{" "}
-            <Text style={styles.inlineCode}>abc123def456</Text>, and{" "}
-            <Text style={styles.inlineCode}>xyz789secretkey</Text> with your
-            actual credentials.
-          </Text>
-        </Section>
-
-        <Section
-          title="Additional Commands"
-          icon={<Info size={20} color="#EC4899" />}
-        >
-          <View style={styles.configSection}>
-            <Text style={styles.configTitle}>List All Tenants</Text>
-            <CodeBlock title="List Tenants">coder auth list</CodeBlock>
-          </View>
-
-          <View style={styles.configSection}>
-            <Text style={styles.configTitle}>Switch Active Tenant</Text>
-            <CodeBlock title="Switch Tenant">
-              {`coder auth switch --tenant <tenant_name>`}
+            <CodeBlock title="Authentication Command">
+              {`coder auth add --tenant <your_tenant> --client <your_client_id> --secret <your_client_secret>`}
             </CodeBlock>
-          </View>
+            <Text style={styles.bodyText}>
+              Replace the placeholders with your actual values:
+            </Text>
+            <View style={styles.requirementCard}>
+              <Text style={styles.requirementText}>
+                • <Text style={styles.inlineCode}>{"<your_tenant>"}</Text> -
+                Your tenant name
+              </Text>
+              <Text style={styles.requirementText}>
+                • <Text style={styles.inlineCode}>{"<your_client_id>"}</Text> -
+                Your client ID from the API keys page
+              </Text>
+              <Text style={styles.requirementText}>
+                •{" "}
+                <Text style={styles.inlineCode}>{"<your_client_secret>"}</Text>{" "}
+                - Your client secret from the API keys page
+              </Text>
+            </View>
+          </Section>
 
-          <View style={styles.configSection}>
-            <Text style={styles.configTitle}>Remove a Tenant</Text>
-            <CodeBlock title="Remove Tenant">
-              {`coder auth remove --tenant <tenant_name>`}
+          <Section
+            title="Step 3: Verify Authentication"
+            icon={<CheckCircle size={20} color="#10B981" />}
+          >
+            <Text style={styles.bodyText}>
+              Check if your authentication was successful by running:
+            </Text>
+            <CodeBlock title="Verification Command">coder auth list</CodeBlock>
+            <Text style={styles.bodyText}>
+              This command will show all configured tenants and indicate which
+              one is currently active.
+            </Text>
+          </Section>
+
+          <Section
+            title="Example Usage"
+            icon={<ExternalLink size={20} color="#8B5CF6" />}
+          >
+            <Text style={styles.bodyText}>
+              Here's a complete example of how to authenticate:
+            </Text>
+            <CodeBlock title="Complete Example">
+              {`coder auth add --tenant mycompany --client abc123def456 --secret xyz789secretkey`}
             </CodeBlock>
-          </View>
-        </Section>
+            <Text style={styles.exampleText}>
+              Replace <Text style={styles.inlineCode}>mycompany</Text>,{" "}
+              <Text style={styles.inlineCode}>abc123def456</Text>, and{" "}
+              <Text style={styles.inlineCode}>xyz789secretkey</Text> with your
+              actual credentials.
+            </Text>
+          </Section>
 
-        <Section
-          title="Troubleshooting"
-          icon={<Shield size={20} color="#F43F5E" />}
-        >
-          <View style={styles.troubleshootingCard}>
-            <Text style={styles.troubleshootingTitle}>Common Issues:</Text>
-            <Text style={styles.troubleshootingText}>
-              • <Text style={styles.bold}>Invalid credentials:</Text>{" "}
-              Double-check your client ID and secret
-            </Text>
-            <Text style={styles.troubleshootingText}>
-              • <Text style={styles.bold}>Tenant not found:</Text> Verify your
-              tenant name is correct
-            </Text>
-            <Text style={styles.troubleshootingText}>
-              • <Text style={styles.bold}>Network issues:</Text> Check your
-              internet connection
-            </Text>
-          </View>
-        </Section>
+          <Section
+            title="Additional Commands"
+            icon={<Info size={20} color="#EC4899" />}
+          >
+            <View style={styles.configSection}>
+              <Text style={styles.configTitle}>List All Tenants</Text>
+              <CodeBlock title="List Tenants">coder auth list</CodeBlock>
+            </View>
 
-        <Section
-          title="Authentication Complete!"
-          icon={<PartyPopper size={20} color={theme.colors.action.success} />}
-        >
-          <Text style={styles.requirementText}>
-            Your Coder CLI is now authenticated and ready to use. You can start
-            executing commands with your configured tenant.
-          </Text>
-        </Section>
-      </View>
-    </ScrollView>
+            <View style={styles.configSection}>
+              <Text style={styles.configTitle}>Switch Active Tenant</Text>
+              <CodeBlock title="Switch Tenant">
+                {`coder auth switch --tenant <tenant_name>`}
+              </CodeBlock>
+            </View>
+
+            <View style={styles.configSection}>
+              <Text style={styles.configTitle}>Remove a Tenant</Text>
+              <CodeBlock title="Remove Tenant">
+                {`coder auth remove --tenant <tenant_name>`}
+              </CodeBlock>
+            </View>
+          </Section>
+
+          <Section
+            title="Troubleshooting"
+            icon={<Shield size={20} color="#F43F5E" />}
+          >
+            <View style={styles.troubleshootingCard}>
+              <Text style={styles.troubleshootingTitle}>Common Issues:</Text>
+              <Text style={styles.troubleshootingText}>
+                • <Text style={styles.bold}>Invalid credentials:</Text>{" "}
+                Double-check your client ID and secret
+              </Text>
+              <Text style={styles.troubleshootingText}>
+                • <Text style={styles.bold}>Tenant not found:</Text> Verify your
+                tenant name is correct
+              </Text>
+              <Text style={styles.troubleshootingText}>
+                • <Text style={styles.bold}>Network issues:</Text> Check your
+                internet connection
+              </Text>
+            </View>
+          </Section>
+
+          <Section
+            title="Authentication Complete!"
+            icon={<PartyPopper size={20} color={theme.colors.action.success} />}
+          >
+            <Text style={styles.requirementText}>
+              Your Coder CLI is now authenticated and ready to use. You can
+              start executing commands with your configured tenant.
+            </Text>
+          </Section>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -207,50 +204,62 @@ const styles = StyleSheet.create({
     backgroundColor: "#0A0E14",
   },
   contentContainer: {
-    flexGrow: 1,
-    padding: 20,
+    paddingBottom: 40,
   },
   header: {
-    marginBottom: 32,
-  },
-  backButton: {
-    alignSelf: "flex-start",
-    marginBottom: 24,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#2D3748",
+  },
+  backButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 8,
   },
   backButtonText: {
     fontSize: 16,
     color: "#F8F7F4",
-    opacity: 0.8,
-    fontWeight: "500",
+    marginLeft: 8,
+  },
+  heroSection: {
+    paddingTop: 32,
+    paddingBottom: 16,
+    paddingHorizontal: 16,
+    alignItems: "center",
+    gap: 16,
+  },
+  heroIconContainer: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: "rgba(245, 158, 11, 0.2)",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  heroTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#F8F7F4",
+    textAlign: "center",
+  },
+  heroSubtitle: {
+    fontSize: 16,
+    color: "#F8F7F4",
+    opacity: 0.7,
+    textAlign: "center",
+    lineHeight: 24,
+    paddingHorizontal: 20,
   },
   titleContainer: {
     gap: 12,
   },
-  titleRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#F8F7F4",
-    opacity: 0.7,
-    lineHeight: 24,
-    marginLeft: 48,
-  },
   content: {
-    flex: 1,
+    padding: 16,
     gap: 24,
   },
   bodyText: {
@@ -358,5 +367,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#F8F7F4",
     marginBottom: 8,
+  },
+  scrollView: {
+    flex: 1,
   },
 });
