@@ -1,35 +1,24 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootStack";
 import {
-  ArrowLeft,
   PartyPopper,
   Info,
-  Target,
-  Users,
-  MessageCircle,
-  Brain,
-  RefreshCw,
-  AlertTriangle,
   Lightbulb,
-  Code,
-  Eye,
+  MessageSquare,
+  FileCode,
+  AlertTriangle,
   Zap,
-  Settings,
   BookOpen,
 } from "lucide-react-native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import CodeBlock from "../components/CodeBlock";
 import Section from "../components/Section";
 import { theme } from "../theme";
+import BackButton from "../components/BackButton";
+import Hero from "../components/Hero";
 
 type BestPracticesNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -40,321 +29,174 @@ export default function BestPractices() {
   const navigation = useNavigation<BestPracticesNavigationProp>();
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
-      showsVerticalScrollIndicator={false}
-    >
+    <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-          activeOpacity={0.7}
-        >
-          <ArrowLeft size={20} color="#F8F7F4" style={{ opacity: 0.8 }} />
-          <Text style={styles.backButtonText}>Back</Text>
-        </TouchableOpacity>
-
-        <View style={styles.titleContainer}>
-          <View style={styles.titleRow}>
-            <Lightbulb size={32} color={theme.colors.accent.softPink} />
-            <Text style={styles.title}>Best Practices</Text>
-          </View>
-          <Text style={styles.subtitle}>
-            Enhance your collaboration with AI for better coding outcomes
-          </Text>
-        </View>
+        <BackButton />
       </View>
 
-      <View style={styles.content}>
-        {/* Structured Approach */}
-        <Section
-          title="Define Objectives Clearly"
-          icon={<Target size={20} color="#3B82F6" />}
-        >
-          <Text style={styles.bodyText}>
-            Before requesting the AI to make direct code changes, clearly
-            explain your objectives. This helps the AI understand the context
-            and requirements for the task at hand.
-          </Text>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        <Hero
+          title="Best Practices"
+          subtitle="Tips and guidelines for getting the most out of Coder CLI"
+          iconComponent={Lightbulb}
+          iconColor={theme.colors.action.warning}
+        />
 
-          <View style={styles.exampleBox}>
-            <Text style={styles.exampleTitle}>Example Prompt</Text>
-            <Text style={styles.exampleText}>
-              In the context creator, I want to make it possible to specify a
-              function that parses the content of the files, processes it, and
-              returns the actual string that will be put in the context as the
-              content of the specific file.
+        <View style={styles.content}>
+          <Section
+            title="Writing Effective Prompts"
+            icon={<MessageSquare size={20} color="#3B82F6" />}
+          >
+            <Text style={styles.bodyText}>
+              Clear and specific prompts lead to better results. Follow these
+              guidelines:
             </Text>
-            <Text style={styles.exampleText}>
-              Before generating the code, please review the solution, and then
-              ask the Coder to execute (coder apply).
-            </Text>
-          </View>
-        </Section>
-
-        {/* Review Process */}
-        <Section
-          title="Review the Suggested Solution"
-          icon={<Eye size={20} color="#10B981" />}
-        >
-          <Text style={styles.bodyText}>
-            After providing the context and requirements, ask the AI to review
-            the proposed solution before implementing it. This allows for
-            refinement and adjustments based on feedback.
-          </Text>
-
-          <View style={styles.processCard}>
-            <View style={styles.processStep}>
-              <View style={styles.stepNumber}>
-                <Text style={styles.stepText}>1</Text>
-              </View>
-              <Text style={styles.processText}>
-                Provide context and requirements
+            <View style={styles.requirementCard}>
+              <Text style={styles.requirementText}>
+                • Be specific about what you want to achieve
+              </Text>
+              <Text style={styles.requirementText}>
+                • Provide context about your project
+              </Text>
+              <Text style={styles.requirementText}>
+                • Specify programming language and frameworks
+              </Text>
+              <Text style={styles.requirementText}>
+                • Break complex tasks into smaller steps
               </Text>
             </View>
-            <View style={styles.processStep}>
-              <View style={styles.stepNumber}>
-                <Text style={styles.stepText}>2</Text>
-              </View>
-              <Text style={styles.processText}>
-                Request AI to review solution
-              </Text>
-            </View>
-            <View style={styles.processStep}>
-              <View style={styles.stepNumber}>
-                <Text style={styles.stepText}>3</Text>
-              </View>
-              <Text style={styles.processText}>Iterative refinement</Text>
-            </View>
-          </View>
-        </Section>
-
-        {/* Iterative Refinement */}
-        <Section
-          title="Iterative Refinement"
-          icon={<RefreshCw size={20} color="#8B5CF6" />}
-        >
-          <Text style={styles.bodyText}>
-            Be prepared to provide one or two additional prompts to adjust the
-            solution based on the AI's review. This iterative process can lead
-            to a more accurate final implementation.
-          </Text>
-        </Section>
-
-        {/* Session Context */}
-        <Section
-          title="Understanding Session Context"
-          icon={<Brain size={20} color="#F59E0B" />}
-        >
-          <Text style={styles.bodyText}>
-            When using the <Text style={styles.inlineCode}>coder apply</Text>{" "}
-            command, it's important to understand how the AI considers the
-            context for future iterations:
-          </Text>
-          <View style={styles.infoBox}>
-            <Info size={16} color="#3B82F6" />
-            <Text style={styles.infoText}>
-              The AI considers everything in the active session. If changes were
-              made to a file, it retains the entire history of what the file was
-              before the session was created and what modifications have already
-              been suggested.
-            </Text>
-          </View>
-        </Section>
-
-        {/* Personas */}
-        <Section
-          title="Usage of Personas"
-          icon={<Users size={20} color="#EC4899" />}
-        >
-          <Text style={styles.bodyText}>
-            Personas are fictional characters that represent different user
-            types who might interact with a system. In the context of using LLM
-            agents for code generation, defining personas helps tailor
-            interactions to meet specific needs.
-          </Text>
-
-          <View style={styles.practicesList}>
-            <View style={styles.practiceItem}>
-              <View style={styles.practiceNumber}>
-                <Text style={styles.practiceText}>1</Text>
-              </View>
-              <View style={styles.practiceContent}>
-                <Text style={styles.practiceTitle}>Identify Key Personas</Text>
-                <Text style={styles.practiceDescription}>
-                  Understand different stakeholders (developers, project
-                  managers, testers) and create personas that reflect their
-                  goals, technical expertise, and coding styles.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.practiceItem}>
-              <View style={styles.practiceNumber}>
-                <Text style={styles.practiceText}>2</Text>
-              </View>
-              <View style={styles.practiceContent}>
-                <Text style={styles.practiceTitle}>Customize Interactions</Text>
-                <Text style={styles.practiceDescription}>
-                  Use personas to guide agent interactions. Novice developers
-                  might appreciate detailed explanations, while experienced
-                  developers prefer concise responses.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.practiceItem}>
-              <View style={styles.practiceNumber}>
-                <Text style={styles.practiceText}>3</Text>
-              </View>
-              <View style={styles.practiceContent}>
-                <Text style={styles.practiceTitle}>
-                  Iterate Based on Feedback
-                </Text>
-                <Text style={styles.practiceDescription}>
-                  Continuously gather feedback from users of different personas
-                  to refine their characteristics and improve interaction
-                  effectiveness.
-                </Text>
-              </View>
-            </View>
-          </View>
-        </Section>
-
-        {/* Prompts and Best Practices */}
-        <Section
-          title="Crafting Effective Prompts"
-          icon={<MessageCircle size={20} color="#06B6D4" />}
-        >
-          <Text style={styles.bodyText}>
-            The quality of the output generated by an LLM agent heavily depends
-            on how well the prompts are crafted. Here are some best practices:
-          </Text>
-
-          <View style={styles.promptSection}>
-            <Text style={styles.promptTitle}>1. Be Specific</Text>
-            <Text style={styles.promptDescription}>
-              Clearly define the task and provide context. The more specific you
-              are, the better the model can understand your needs.
-            </Text>
-            <CodeBlock title="Example Command">
-              {`coder run --prompt "Generate a function that calculates the factorial of a number in Python."`}
+            <Text style={styles.bodyText}>Example of a good prompt:</Text>
+            <CodeBlock title="Good Prompt Example">
+              {`Create a Python function that reads a CSV file named 'data.csv', filters rows where the 'status' column equals 'active', and writes the filtered data to a new file called 'active_data.csv'. Use the pandas library.`}
             </CodeBlock>
-          </View>
+          </Section>
 
-          <View style={styles.promptSection}>
-            <Text style={styles.promptTitle}>2. Use Clear Language</Text>
-            <Text style={styles.promptDescription}>
-              Avoid jargon or ambiguous terms. Use simple and direct language to
-              ensure the model comprehends your request.
+          <Section
+            title="Session Management"
+            icon={<FileCode size={20} color="#8B5CF6" />}
+          >
+            <Text style={styles.bodyText}>
+              Organize your work into logical sessions for better management:
             </Text>
-          </View>
+            <View style={styles.configSection}>
+              <Text style={styles.configTitle}>Create Focused Sessions</Text>
+              <Text style={styles.bodyText}>
+                Create separate sessions for different features or components.
+              </Text>
+              <CodeBlock title="Session Creation">
+                {`# Create a session for user authentication
+coder new auth-feature
 
-          <View style={styles.promptSection}>
-            <Text style={styles.promptTitle}>3. Request a Review</Text>
-            <Text style={styles.promptDescription}>
-              Before asking for code generation, request the AI to review the
-              proposed solution. This allows for refinement and ensures
-              alignment with your objectives.
+# Create a session for data processing
+coder new data-processor`}
+              </CodeBlock>
+            </View>
+
+            <View style={styles.configSection}>
+              <Text style={styles.configTitle}>Review Before Applying</Text>
+              <Text style={styles.bodyText}>
+                Always review the assistant's output before applying changes:
+              </Text>
+              <CodeBlock title="Review Process">
+                {`# Run the session
+coder run
+
+# Review the output in .coder/sessions/session-name/xxxx_assistant.md
+
+# Apply changes only after review
+coder apply`}
+              </CodeBlock>
+            </View>
+          </Section>
+
+          <Section
+            title="Iterative Development"
+            icon={<Zap size={20} color="#EC4899" />}
+          >
+            <Text style={styles.bodyText}>
+              Use Coder in an iterative manner to refine your code:
             </Text>
-            <CodeBlock title="Example Request">
-              {`Before generating the code, please review the proposed solution and let me know if there are any improvements.`}
+            <View style={styles.alternativeBox}>
+              <Info size={16} color="#3B82F6" />
+              <Text style={styles.alternativeText}>
+                Start with a basic implementation, then create new sessions to
+                refine and improve your code.
+              </Text>
+            </View>
+            <Text style={styles.bodyText}>Example workflow:</Text>
+            <View style={styles.fileStructureBox}>
+              <Text style={styles.fileStructureText}>
+                {`1. Create initial implementation
+2. Test and identify issues
+3. Create a new session for improvements
+4. Apply changes and test again
+5. Repeat as needed`}
+              </Text>
+            </View>
+          </Section>
+
+          <Section
+            title="Common Pitfalls to Avoid"
+            icon={<AlertTriangle size={20} color="#F43F5E" />}
+          >
+            <View style={styles.troubleshootingCard}>
+              <Text style={styles.troubleshootingTitle}>
+                Avoid These Mistakes:
+              </Text>
+              <Text style={styles.troubleshootingText}>
+                • <Text style={styles.bold}>Vague prompts:</Text> "Make my code
+                better" is too general
+              </Text>
+              <Text style={styles.troubleshootingText}>
+                • <Text style={styles.bold}>Applying without review:</Text>{" "}
+                Always check generated code
+              </Text>
+              <Text style={styles.troubleshootingText}>
+                • <Text style={styles.bold}>Ignoring error messages:</Text> They
+                contain valuable information
+              </Text>
+              <Text style={styles.troubleshootingText}>
+                • <Text style={styles.bold}>Overcomplicating requests:</Text>{" "}
+                Break complex tasks into smaller ones
+              </Text>
+            </View>
+          </Section>
+
+          <Section
+            title="Documentation and Comments"
+            icon={<BookOpen size={20} color="#10B981" />}
+          >
+            <Text style={styles.bodyText}>
+              Ask Coder to include documentation and comments in generated code:
+            </Text>
+            <CodeBlock title="Documentation Request">
+              {`Create a Python function to process user data. Include docstrings and comments explaining the logic.`}
             </CodeBlock>
-          </View>
+            <View style={styles.infoBox}>
+              <Info size={16} color="#3B82F6" />
+              <Text style={styles.infoText}>
+                Well-documented code is easier to maintain and understand,
+                especially when working in teams.
+              </Text>
+            </View>
+          </Section>
 
-          <View style={styles.promptSection}>
-            <Text style={styles.promptTitle}>4. Iterate and Refine</Text>
-            <Text style={styles.promptDescription}>
-              Be open to refining your prompts based on initial outputs. Use
-              follow-up prompts to clarify or adjust the direction of the code
-              generation.
+          <Section
+            title="Happy Coding!"
+            icon={<PartyPopper size={20} color={theme.colors.action.success} />}
+          >
+            <Text style={styles.requirementText}>
+              By following these best practices, you'll get the most out of the
+              Coder CLI tool and improve your development workflow.
             </Text>
-          </View>
-        </Section>
-
-        {/* Model Usage */}
-        <Section
-          title="Usage of Models"
-          icon={<Zap size={20} color="#F59E0B" />}
-        >
-          <View style={styles.modelsList}>
-            <View style={styles.modelItem}>
-              <Text style={styles.modelTitle}>
-                Understand Model Capabilities
-              </Text>
-              <Text style={styles.modelDescription}>
-                Different models have varying strengths. Familiarize yourself
-                with the capabilities of each model available to choose one that
-                best fits your needs.
-              </Text>
-            </View>
-
-            <View style={styles.modelItem}>
-              <Text style={styles.modelTitle}>Task Suitability</Text>
-              <Text style={styles.modelDescription}>
-                Choose a model that performs well for your specific coding
-                task—whether it's generating new code, debugging, or
-                refactoring.
-              </Text>
-            </View>
-
-            <View style={styles.modelItem}>
-              <Text style={styles.modelTitle}>Resource Considerations</Text>
-              <Text style={styles.modelDescription}>
-                Consider computational resources required. Some models may
-                require more powerful hardware, impacting performance and
-                response times.
-              </Text>
-            </View>
-          </View>
-        </Section>
-
-        {/* Important Warning */}
-        <View style={styles.warningSection}>
-          <View style={styles.warningHeader}>
-            <AlertTriangle size={24} color="#F59E0B" />
-            <Text style={styles.warningTitle}>
-              Important: Context Management
-            </Text>
-          </View>
-          <Text style={styles.warningText}>
-            Every time you have a session open and make a manual change to your
-            code, you need to run the{" "}
-            <Text style={styles.inlineCode}>coder init</Text> or{" "}
-            <Text style={styles.inlineCode}>coder reset</Text> command.
-          </Text>
-          <Text style={styles.warningText}>
-            If you run <Text style={styles.inlineCode}>coder apply</Text> after
-            modifying something in your code, the previous context that the
-            session had will not take into account your new code, so you have to
-            process that new context using the Init or Reset commands or else
-            your new code will be discarded by the old context.
-          </Text>
-          <CodeBlock title="Context Reset Commands">
-            {`# Reset context after manual changes
-coder init
-# or
-coder reset`}
-          </CodeBlock>
+          </Section>
         </View>
-
-        {/* Success Message */}
-        <View style={styles.successBox}>
-          <View style={styles.successHeader}>
-            <View style={styles.successIconBadge}>
-              <PartyPopper size={24} color="#10B981" />
-            </View>
-            <Text style={styles.successTitle}>Ready to Excel!</Text>
-          </View>
-          <Text style={styles.successText}>
-            By following these best practices, you can maximize the
-            effectiveness of LLM agents for code generation, leading to more
-            efficient and high-quality coding outcomes.
-          </Text>
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -364,50 +206,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#0A0E14",
   },
   contentContainer: {
-    flexGrow: 1,
-    padding: 20,
+    paddingBottom: 40,
   },
   header: {
-    marginBottom: 32,
-  },
-  backButton: {
-    alignSelf: "flex-start",
-    marginBottom: 24,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#2D3748",
   },
-  backButtonText: {
-    fontSize: 16,
-    color: "#F8F7F4",
-    opacity: 0.8,
-    fontWeight: "500",
-  },
-  titleContainer: {
-    gap: 12,
-  },
-  titleRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#F8F7F4",
-    opacity: 0.7,
-    lineHeight: 24,
-    marginLeft: 48,
+  scrollView: {
+    flex: 1,
   },
   content: {
-    flex: 1,
+    padding: 16,
     gap: 24,
   },
   bodyText: {
@@ -416,6 +230,14 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     lineHeight: 22,
     marginBottom: 16,
+  },
+  exampleText: {
+    fontSize: 13,
+    color: "#F8F7F4",
+    opacity: 0.7,
+    marginTop: 8,
+    marginBottom: 12,
+    fontStyle: "italic",
   },
   inlineCode: {
     fontFamily: "monospace",
@@ -426,160 +248,52 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#F8F7F4",
   },
-  exampleBox: {
+  requirementCard: {
     backgroundColor: "#0D1117",
     padding: 16,
     borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#2D3748",
+    marginBottom: 16,
+  },
+  requirementText: {
+    fontSize: 14,
+    color: "#F8F7F4",
+    opacity: 0.8,
+    lineHeight: 20,
+    marginBottom: 4,
+  },
+  alternativeBox: {
+    backgroundColor: "#1E293B",
+    padding: 12,
+    borderRadius: 6,
+    borderLeftWidth: 3,
+    borderLeftColor: "#3B82F6",
+    marginBottom: 16,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 8,
+  },
+  alternativeText: {
+    fontSize: 13,
+    color: "#F8F7F4",
+    opacity: 0.8,
+    lineHeight: 18,
+    flex: 1,
+  },
+  fileStructureBox: {
+    backgroundColor: "#0D1117",
+    padding: 16,
+    borderRadius: 8,
     borderWidth: 1,
     borderColor: "#2D3748",
     marginTop: 8,
   },
-  exampleTitle: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#F59E0B",
-    marginBottom: 8,
-  },
-  exampleText: {
-    fontSize: 13,
-    color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 20,
-    marginBottom: 8,
-  },
-  processCard: {
-    backgroundColor: "#0D1117",
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#2D3748",
-    gap: 12,
-  },
-  processStep: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-  },
-  stepNumber: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: "#10B981",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  stepText: {
+  fileStructureText: {
     fontSize: 12,
-    fontWeight: "bold",
-    color: "#FFFFFF",
-  },
-  processText: {
-    fontSize: 14,
     color: "#F8F7F4",
-    opacity: 0.8,
-    flex: 1,
-  },
-  practicesList: {
-    gap: 16,
-  },
-  practiceItem: {
-    flexDirection: "row",
-    gap: 12,
-    alignItems: "flex-start",
-  },
-  practiceNumber: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: "#EC4899",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  practiceText: {
-    fontSize: 12,
-    fontWeight: "bold",
-    color: "#FFFFFF",
-  },
-  practiceContent: {
-    flex: 1,
-  },
-  practiceTitle: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#F8F7F4",
-    marginBottom: 4,
-  },
-  practiceDescription: {
-    fontSize: 13,
-    color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 20,
-  },
-  promptSection: {
-    marginBottom: 20,
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
-  },
-  promptTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#F8F7F4",
-    marginBottom: 8,
-  },
-  promptDescription: {
-    fontSize: 14,
-    color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 20,
-    marginBottom: 12,
-  },
-  modelsList: {
-    gap: 16,
-  },
-  modelItem: {
-    backgroundColor: "#0D1117",
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#2D3748",
-  },
-  modelTitle: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#F8F7F4",
-    marginBottom: 8,
-  },
-  modelDescription: {
-    fontSize: 13,
-    color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 20,
-  },
-  warningSection: {
-    backgroundColor: "#1A1F2E",
-    borderRadius: 16,
-    padding: 20,
-    borderWidth: 2,
-    borderColor: "#F59E0B",
-  },
-  warningHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 16,
-  },
-  warningTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#F59E0B",
-  },
-  warningText: {
-    fontSize: 14,
-    color: "#F8F7F4",
-    opacity: 0.9,
-    lineHeight: 22,
-    marginBottom: 12,
+    fontFamily: "monospace",
+    lineHeight: 16,
   },
   infoBox: {
     backgroundColor: "#1E3A8A",
@@ -599,38 +313,39 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     flex: 1,
   },
-  successBox: {
-    backgroundColor: "#1E293B",
-    padding: 24,
-    borderRadius: 16,
-    borderWidth: 2,
-    borderColor: "#10B981",
-    marginTop: 8,
+  configSection: {
+    marginBottom: 20,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#2D3748",
   },
-  successHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
-    marginBottom: 12,
+  configTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#F8F7F4",
+    marginBottom: 8,
   },
-  successIconBadge: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: "#10B981",
-    justifyContent: "center",
-    alignItems: "center",
+  troubleshootingCard: {
+    backgroundColor: "#0D1117",
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#2D3748",
   },
-  successTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#10B981",
-  },
-  successText: {
+  troubleshootingTitle: {
     fontSize: 14,
     color: "#F8F7F4",
-    opacity: 0.9,
-    lineHeight: 22,
-    marginLeft: 64,
+    fontWeight: "600",
+    marginBottom: 8,
+  },
+  troubleshootingText: {
+    fontSize: 13,
+    color: "#F8F7F4",
+    opacity: 0.8,
+    lineHeight: 18,
+    marginBottom: 4,
+  },
+  bold: {
+    fontWeight: "600",
   },
 });
