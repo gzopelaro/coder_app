@@ -9,14 +9,15 @@ import HowToRun from "../screens/HowToRun";
 import HowToAuthenticate from "../screens/HowToAuthenticate";
 import HowToInstall from "../screens/HowToInstall";
 import BestPractices from "../screens/BestPractices";
+import { ScreenNames } from "./ScreenNames";
 
 export type RootStackParamList = {
-  Entry: undefined;
-  Home: undefined;
-  HowToInstall: undefined;
-  HowToAuthenticate: undefined;
-  HowToRun: undefined;
-  BestPractices: undefined;
+  [ScreenNames.Entry]: undefined;
+  [ScreenNames.Home]: undefined;
+  [ScreenNames.HowToInstall]: undefined;
+  [ScreenNames.HowToAuthenticate]: undefined;
+  [ScreenNames.HowToRun]: undefined;
+  [ScreenNames.BestPractices]: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -26,64 +27,38 @@ export default function RootStack() {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Entry"
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#101923",
-            },
-            headerTintColor: "#F8F7F4",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-          }}
+          initialRouteName={ScreenNames.Entry}
+          screenOptions={{ headerShown: false }}
         >
           <Stack.Screen
-            name="Entry"
+            name={ScreenNames.Entry}
             component={Entry}
-            options={{
-              title: "Coder AI",
-              headerShown: false,
-            }}
+            options={{ title: "Coder AI" }}
           />
           <Stack.Screen
-            name="Home"
+            name={ScreenNames.Home}
             component={Home}
-            options={{
-              title: "Home",
-              headerShown: false,
-            }}
+            options={{ title: "Home" }}
           />
           <Stack.Screen
-            name="HowToInstall"
+            name={ScreenNames.HowToInstall}
             component={HowToInstall}
-            options={{
-              title: "HowToInstall",
-              headerShown: false,
-            }}
+            options={{ title: "HowToInstall" }}
           />
           <Stack.Screen
-            name="HowToAuthenticate"
+            name={ScreenNames.HowToAuthenticate}
             component={HowToAuthenticate}
-            options={{
-              title: "HowToAuthenticate",
-              headerShown: false,
-            }}
+            options={{ title: "HowToAuthenticate" }}
           />
           <Stack.Screen
-            name="HowToRun"
+            name={ScreenNames.HowToRun}
             component={HowToRun}
-            options={{
-              title: "HowToRun",
-              headerShown: false,
-            }}
+            options={{ title: "HowToRun" }}
           />
           <Stack.Screen
-            name="BestPractices"
+            name={ScreenNames.BestPractices}
             component={BestPractices}
-            options={{
-              title: "BestPractices",
-              headerShown: false,
-            }}
+            options={{ title: "BestPractices" }}
           />
         </Stack.Navigator>
       </NavigationContainer>

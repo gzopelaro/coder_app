@@ -29,10 +29,11 @@ import {
   Settings,
   BookOpen,
 } from "lucide-react-native";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 type BestPracticesNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "BestPractices"
+  ScreenNames.BestPractices
 >;
 
 export default function BestPractices() {

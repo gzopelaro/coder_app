@@ -21,10 +21,11 @@ import {
   CheckCircle,
   ExternalLink,
 } from "lucide-react-native";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "HowToAuthenticate"
+  ScreenNames.HowToAuthenticate
 >;
 
 export default function HowToAuthenticate() {

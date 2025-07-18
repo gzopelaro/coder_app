@@ -23,10 +23,11 @@ import {
   Terminal,
   Code,
 } from "lucide-react-native";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 type HowToRunNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "HowToRun"
+  ScreenNames.HowToRun
 >;
 
 export default function HowToRun() {

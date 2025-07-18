@@ -3,17 +3,18 @@ import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootStack";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 type EntryNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "Entry"
+  ScreenNames.Entry
 >;
 
 export default function Entry() {
   const navigation = useNavigation<EntryNavigationProp>();
 
   const handleStartNow = () => {
-    navigation.navigate("Home");
+    navigation.navigate(ScreenNames.Home);
   };
 
   return (

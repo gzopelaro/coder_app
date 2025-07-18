@@ -3,48 +3,14 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/RootStack";
-
-type HomeNavigationProp = NativeStackNavigationProp<RootStackParamList, "Home">;
+import Section from "../components/Section";
+import { homeSections, HomeNavigationProp } from "../data/homeSections";
 
 export default function Home() {
   const navigation = useNavigation<HomeNavigationProp>();
-
-  const sections = [
-    {
-      id: "install",
-      title: "How to Install",
-      subtitle: "Initial setup of Coder CLI",
-      icon: "📦",
-      onPress: () => navigation.navigate("HowToInstall"),
-    },
-    {
-      id: "authenticate",
-      title: "How to Authenticate",
-      subtitle: "Configure your authentication",
-      icon: "🔐",
-      onPress: () => navigation.navigate("HowToAuthenticate"),
-    },
-    {
-      id: "run",
-      title: "How to Run",
-      subtitle: "First steps and basic commands",
-      icon: "🚀",
-      onPress: () => navigation.navigate("HowToRun"),
-    },
-    {
-      id: "best-practices",
-      title: "Best Practices",
-      subtitle: "Tips to optimize your workflow",
-      icon: "✨",
-      onPress: () => navigation.navigate("BestPractices"),
-    },
-  ];
 
   return (
     <ScrollView
@@ -62,24 +28,15 @@ export default function Home() {
       </View>
 
       <View style={styles.sectionsContainer}>
-        {sections.map((section, index) => (
-          <TouchableOpacity
-            key={section.id}
-            style={[styles.sectionCard, { marginTop: index === 0 ? 0 : 16 }]}
-            onPress={section.onPress}
-            activeOpacity={0.8}
-          >
-            <View style={styles.sectionIcon}>
-              <Text style={styles.iconText}>{section.icon}</Text>
-            </View>
-            <View style={styles.sectionContent}>
-              <Text style={styles.sectionTitle}>{section.title}</Text>
-              <Text style={styles.sectionSubtitle}>{section.subtitle}</Text>
-            </View>
-            <View style={styles.arrow}>
-              <Text style={styles.arrowText}>›</Text>
-            </View>
-          </TouchableOpacity>
+        {homeSections.map((section, index) => (
+          <View key={section.id} style={index > 0 ? { marginTop: 16 } : undefined}>
+            <Section
+              title={section.title}
+              subtitle={section.subtitle}
+              icon={section.icon}
+              onPress={() => navigation.navigate(section.navigateTo)}
+            />
+          </View>
         ))}
       </View>
 
@@ -128,58 +85,6 @@ const styles = StyleSheet.create({
   },
   sectionsContainer: {
     flex: 1,
-  },
-  sectionCard: {
-    backgroundColor: "#1E293B",
-    borderRadius: 16,
-    padding: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    shadowColor: "#F8F7F4",
-    shadowOpacity: 0.08,
-    shadowRadius: 2,
-    elevation: 8,
-    borderWidth: 1,
-    borderColor: "#2D3748",
-  },
-  sectionIcon: {
-    width: 48,
-    height: 48,
-    backgroundColor: "#2D3748",
-    borderRadius: 12,
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 16,
-  },
-  iconText: {
-    fontSize: 20,
-  },
-  sectionContent: {
-    flex: 1,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-    marginBottom: 4,
-  },
-  sectionSubtitle: {
-    fontSize: 14,
-    color: "#F8F7F4",
-    opacity: 0.7,
-    lineHeight: 18,
-  },
-  arrow: {
-    width: 24,
-    height: 24,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  arrowText: {
-    fontSize: 24,
-    color: "#F8F7F4",
-    opacity: 0.6,
-    fontWeight: "300",
   },
   footer: {
     marginTop: 40,

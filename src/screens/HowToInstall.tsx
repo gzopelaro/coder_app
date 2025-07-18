@@ -24,10 +24,11 @@ import {
   Info,
   Terminal,
 } from "lucide-react-native";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 type HowToInstallNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "HowToInstall"
+  ScreenNames.HowToInstall
 >;
 
 export default function HowToInstall() {
