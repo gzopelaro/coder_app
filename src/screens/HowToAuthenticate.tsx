@@ -24,6 +24,7 @@ import CodeBlock from "../components/CodeBlock";
 import Section from "../components/Section";
 import { theme } from "../theme";
 import BackButton from "../components/BackButton";
+import NextButton from "../components/NextButton";
 
 type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -32,6 +33,10 @@ type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
 
 export default function HowToAuthenticate() {
   const navigation = useNavigation<HowToAuthenticateNavigationProp>();
+
+  const handleNavigateToRun = () => {
+    navigation.navigate(ScreenNames.HowToRun);
+  };
 
   const handleOpenFlowApiKeys = () => {
     Linking.openURL("https://flow.ciandt.com/settings/api-keys");
@@ -67,7 +72,10 @@ export default function HowToAuthenticate() {
               Visit the Flow API Keys page to generate your API key
               (client/secret).
             </Text>
-            <TouchableOpacity style={styles.linkBox} onPress={handleOpenFlowApiKeys}>
+            <TouchableOpacity
+              style={styles.linkBox}
+              onPress={handleOpenFlowApiKeys}
+            >
               <ExternalLink size={16} color="#3B82F6" />
               <Text style={styles.linkText}>Flow API Keys</Text>
             </TouchableOpacity>
@@ -197,6 +205,7 @@ export default function HowToAuthenticate() {
               start executing commands with your configured tenant.
             </Text>
           </Section>
+          <NextButton title="Next: How to Run" onClick={handleNavigateToRun} />
         </View>
       </ScrollView>
     </View>

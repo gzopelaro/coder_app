@@ -4,6 +4,7 @@ import {
   Text,
   View,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -19,6 +20,7 @@ import {
   Download,
   Apple,
   Grid2X2,
+  ArrowRight,
 } from "lucide-react-native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import CodeBlock from "../components/CodeBlock";
@@ -26,6 +28,7 @@ import { theme } from "../theme";
 import Section from "../components/Section";
 import BackButton from "../components/BackButton";
 import Hero from "../components/Hero";
+import NextButton from "../components/NextButton";
 
 type HowToInstallNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -34,6 +37,10 @@ type HowToInstallNavigationProp = NativeStackNavigationProp<
 
 export default function HowToInstall() {
   const navigation = useNavigation<HowToInstallNavigationProp>();
+
+  const handleNavigateToAuthenticate = () => {
+    navigation.navigate(ScreenNames.HowToAuthenticate);
+  };
 
   return (
     <View style={styles.container}>
@@ -70,8 +77,8 @@ export default function HowToInstall() {
             icon={<Package size={20} color="#3B82F6" />}
           >
             <Text style={styles.bodyText}>
-              Execute the following command in your terminal to install the Coder
-              package:
+              Execute the following command in your terminal to install the
+              Coder package:
             </Text>
             <CodeBlock title="Terminal Command">
               pip install
@@ -84,15 +91,15 @@ export default function HowToInstall() {
             icon={<CheckCircle size={20} color="#10B981" />}
           >
             <Text style={styles.bodyText}>
-              Check if the <Text style={styles.inlineCode}>coder</Text> command is
-              available. Open a new terminal window and run:
+              Check if the <Text style={styles.inlineCode}>coder</Text> command
+              is available. Open a new terminal window and run:
             </Text>
             <CodeBlock title="Verification Command">coder --version</CodeBlock>
             <View style={styles.infoBox}>
               <Info size={16} color="#3B82F6" />
               <Text style={styles.infoText}>
-                If the terminal returns the Coder version, you're all set! If you
-                get an error, continue with Step 3.
+                If the terminal returns the Coder version, you're all set! If
+                you get an error, continue with Step 3.
               </Text>
             </View>
           </Section>
@@ -103,7 +110,8 @@ export default function HowToInstall() {
           >
             <Text style={styles.bodyText}>
               If the <Text style={styles.inlineCode}>coder</Text> command is not
-              recognized, add the Python scripts directory to your system's PATH.
+              recognized, add the Python scripts directory to your system's
+              PATH.
             </Text>
 
             <View style={styles.platformSection}>
@@ -140,8 +148,8 @@ set PATH=%PATH%;%HOMEPATH%\\AppData\\Roaming\\Python\\Python310\\Scripts`}
                 <Text style={styles.platformTitle}>macOS & Linux Users</Text>
               </View>
               <Text style={styles.bodyText}>
-                Add the Python scripts directory to your PATH by adding this line
-                to your shell configuration file (
+                Add the Python scripts directory to your PATH by adding this
+                line to your shell configuration file (
                 <Text style={styles.inlineCode}>.bashrc</Text>,{" "}
                 <Text style={styles.inlineCode}>.zshrc</Text>, etc.):
               </Text>
@@ -236,6 +244,11 @@ source ~/.bashrc`}
               can start using the CLI tool for your development workflow.
             </Text>
           </Section>
+
+          <NextButton
+            title="Next: How to Authenticate"
+            onClick={handleNavigateToAuthenticate}
+          />
         </View>
       </ScrollView>
     </View>
@@ -377,6 +390,21 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   bold: {
+    fontWeight: "600",
+  },
+  nextButton: {
+    backgroundColor: "#3B82F6",
+    borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 16,
+  },
+  nextButtonText: {
+    color: "#F8F7F4",
+    fontSize: 16,
     fontWeight: "600",
   },
 });

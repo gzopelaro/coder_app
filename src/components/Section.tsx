@@ -5,7 +5,6 @@ import { LucideIcon } from "lucide-react-native";
 interface SectionProps {
   title: string;
   icon?: ReactNode;
-  iconColor?: string;
   iconBackgroundColor?: string;
   children: ReactNode;
   style?: ViewStyle;
@@ -14,7 +13,6 @@ interface SectionProps {
 const Section: React.FC<SectionProps> = ({
   title,
   icon,
-  iconColor = "#F8F7F4",
   iconBackgroundColor = "#2D3748",
   children,
   style,

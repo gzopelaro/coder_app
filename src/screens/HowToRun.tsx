@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootStack";
@@ -25,6 +20,7 @@ import Section from "../components/Section";
 import { theme } from "../theme";
 import BackButton from "../components/BackButton";
 import Hero from "../components/Hero";
+import NextButton from "../components/NextButton";
 
 type HowToRunNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -33,6 +29,10 @@ type HowToRunNavigationProp = NativeStackNavigationProp<
 
 export default function HowToRun() {
   const navigation = useNavigation<HowToRunNavigationProp>();
+
+  const handleNavigateToBestPractices = () => {
+    navigation.navigate(ScreenNames.BestPractices);
+  };
 
   return (
     <View style={styles.container}>
@@ -113,8 +113,8 @@ export default function HowToRun() {
             <View style={styles.alternativeBox}>
               <FileText size={16} color="#F59E0B" />
               <Text style={styles.alternativeText}>
-                You can also write in the user.md file directly, by accessing the
-                path from above and writing manually the command prompt you
+                You can also write in the user.md file directly, by accessing
+                the path from above and writing manually the command prompt you
                 desire.
               </Text>
             </View>
@@ -145,8 +145,8 @@ export default function HowToRun() {
             <View style={styles.infoBox}>
               <Info size={16} color="#3B82F6" />
               <Text style={styles.infoText}>
-                This file contains the AI assistant's response and generated code
-                based on your prompt.
+                This file contains the AI assistant's response and generated
+                code based on your prompt.
               </Text>
             </View>
           </Section>
@@ -230,7 +230,8 @@ python app.py`}
             icon={<FileText size={20} color="#8B5CF6" />}
           >
             <Text style={styles.bodyText}>
-              After running the commands, your directory structure will look like:
+              After running the commands, your directory structure will look
+              like:
             </Text>
             <View style={styles.fileStructureBox}>
               <Text style={styles.fileStructureText}>
@@ -255,6 +256,10 @@ python app.py`}
               advanced features and create complex applications.
             </Text>
           </Section>
+          <NextButton
+            title="Next: Best Practices"
+            onClick={handleNavigateToBestPractices}
+          />
         </View>
       </ScrollView>
     </View>
