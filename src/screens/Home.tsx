@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Section from "../components/Section";
 import { homeSections, HomeNavigationProp } from "../data/homeSections";
@@ -29,11 +24,15 @@ export default function Home() {
 
       <View style={styles.sectionsContainer}>
         {homeSections.map((section, index) => (
-          <View key={section.id} style={index > 0 ? { marginTop: 16 } : undefined}>
+          <View
+            key={section.id}
+            style={index > 0 ? { marginTop: 16 } : undefined}
+          >
             <Section
               title={section.title}
               subtitle={section.subtitle}
-              icon={section.icon}
+              iconComponent={section.iconComponent}
+              iconColor={section.iconColor}
               onPress={() => navigation.navigate(section.navigateTo)}
             />
           </View>

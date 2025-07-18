@@ -1,6 +1,15 @@
 import { RootStackParamList } from "../navigation/RootStack";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ScreenNames } from "../navigation/ScreenNames";
+import React, { ReactNode } from "react";
+import {
+  Package,
+  Key,
+  Rocket,
+  Sparkles,
+  LucideIcon,
+} from "lucide-react-native";
+import { colors } from "../theme/colors";
 
 export type HomeNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -11,37 +20,44 @@ export interface SectionItem {
   id: string;
   title: string;
   subtitle: string;
-  icon: string;
+  iconComponent: LucideIcon;
+  iconColor: string;
   navigateTo: keyof RootStackParamList;
 }
 
-export const homeSections: SectionItem[] = [
+export const getHomeSections = (): SectionItem[] => [
   {
     id: "install",
     title: "How to Install",
     subtitle: "Initial setup of Coder CLI",
-    icon: "📦",
+    iconComponent: Package,
+    iconColor: colors.coral[500],
     navigateTo: ScreenNames.HowToInstall,
   },
   {
     id: "authenticate",
     title: "How to Authenticate",
     subtitle: "Configure your authentication",
-    icon: "🔐",
+    iconComponent: Key,
+    iconColor: colors.action.warning,
     navigateTo: ScreenNames.HowToAuthenticate,
   },
   {
     id: "run",
     title: "How to Run",
     subtitle: "First steps and basic commands",
-    icon: "🚀",
+    iconComponent: Rocket,
+    iconColor: colors.blue[100],
     navigateTo: ScreenNames.HowToRun,
   },
   {
     id: "best-practices",
     title: "Best Practices",
     subtitle: "Tips to optimize your workflow",
-    icon: "✨",
+    iconComponent: Sparkles,
+    iconColor: colors.accent.softPink,
     navigateTo: ScreenNames.BestPractices,
   },
 ];
+
+export const homeSections = getHomeSections();

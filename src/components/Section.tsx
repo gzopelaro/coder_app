@@ -1,18 +1,30 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { LucideIcon } from "lucide-react-native";
 
 type SectionProps = {
   title: string;
   subtitle: string;
-  icon: string;
+  iconComponent: LucideIcon;
+  iconColor: string;
   onPress: () => void;
 };
 
-const Section: React.FC<SectionProps> = ({ title, subtitle, icon, onPress }) => {
+const Section: React.FC<SectionProps> = ({
+  title,
+  subtitle,
+  iconComponent: IconComponent,
+  iconColor,
+  onPress,
+}) => {
   return (
-    <TouchableOpacity style={styles.sectionCard} onPress={onPress} activeOpacity={0.8}>
+    <TouchableOpacity
+      style={styles.sectionCard}
+      onPress={onPress}
+      activeOpacity={0.8}
+    >
       <View style={styles.sectionIcon}>
-        <Text style={styles.iconText}>{icon}</Text>
+        <IconComponent size={24} color={iconColor} />
       </View>
       <View style={styles.sectionContent}>
         <Text style={styles.sectionTitle}>{title}</Text>
@@ -47,9 +59,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 16,
-  },
-  iconText: {
-    fontSize: 20,
   },
   sectionContent: {
     flex: 1,
