@@ -20,9 +20,14 @@ import {
   PartyPopper,
   Info,
   Terminal,
+  Download,
+  Apple,
+  Grid2X2,
 } from "lucide-react-native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import CodeBlock from "../components/CodeBlock";
+import { theme } from "../theme";
+import Section from "../components/Section";
 
 type HowToInstallNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -36,39 +41,45 @@ export default function HowToInstall() {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
+      showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}
+          activeOpacity={0.7}
         >
           <ArrowLeft size={20} color="#F8F7F4" style={{ opacity: 0.8 }} />
           <Text style={styles.backButtonText}>Back</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>How to Install</Text>
-        <Text style={styles.subtitle}>
-          Complete guide to install and configure the Coder CLI tool
-        </Text>
+
+        <View style={styles.titleContainer}>
+          <View style={styles.titleRow}>
+            <Download size={32} color="#3B82F6" />
+            <Text style={styles.title}>How to Install</Text>
+          </View>
+          <Text style={styles.subtitle}>
+            Complete guide to install and configure the Coder CLI tool
+          </Text>
+        </View>
       </View>
 
       <View style={styles.content}>
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Requirements</Text>
-          </View>
+        <Section
+          title="Requirements"
+          icon={<ClipboardList size={20} color="#F59E0B" />}
+        >
           <View style={styles.requirementCard}>
             <Text style={styles.requirementText}>
               • Python version 3.10 or higher
             </Text>
           </View>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>
-              Step 1: Install the Coder Package
-            </Text>
-          </View>
+        <Section
+          title="Step 1: Install the Coder Package"
+          icon={<Package size={20} color="#3B82F6" />}
+        >
           <Text style={styles.bodyText}>
             Execute the following command in your terminal to install the Coder
             package:
@@ -77,12 +88,12 @@ export default function HowToInstall() {
             pip install
             https://storage.googleapis.com/flow-coder/flow_coder-1.4.0-py3-none-any.whl
           </CodeBlock>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Step 2: Verify Installation</Text>
-          </View>
+        <Section
+          title="Step 2: Verify Installation"
+          icon={<CheckCircle size={20} color="#10B981" />}
+        >
           <Text style={styles.bodyText}>
             Check if the <Text style={styles.inlineCode}>coder</Text> command is
             available. Open a new terminal window and run:
@@ -95,14 +106,12 @@ export default function HowToInstall() {
               get an error, continue with Step 3.
             </Text>
           </View>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>
-              Step 3: Configure PATH (If Needed)
-            </Text>
-          </View>
+        <Section
+          title="Step 3: Configure PATH (If Needed)"
+          icon={<Settings size={20} color="#8B5CF6" />}
+        >
           <Text style={styles.bodyText}>
             If the <Text style={styles.inlineCode}>coder</Text> command is not
             recognized, add the Python scripts directory to your system's PATH.
@@ -110,6 +119,9 @@ export default function HowToInstall() {
 
           <View style={styles.platformSection}>
             <View style={styles.platformHeader}>
+              <View style={styles.platformIconBadge}>
+                <Grid2X2 size={16} color="#F8F7F4" />
+              </View>
               <Text style={styles.platformTitle}>Windows Users</Text>
             </View>
             <Text style={styles.bodyText}>
@@ -133,6 +145,9 @@ set PATH=%PATH%;%HOMEPATH%\\AppData\\Roaming\\Python\\Python310\\Scripts`}
 
           <View style={styles.platformSection}>
             <View style={styles.platformHeader}>
+              <View style={styles.platformIconBadge}>
+                <Apple size={16} color="#F8F7F4" />
+              </View>
               <Text style={styles.platformTitle}>macOS & Linux Users</Text>
             </View>
             <Text style={styles.bodyText}>
@@ -145,42 +160,48 @@ set PATH=%PATH%;%HOMEPATH%\\AppData\\Roaming\\Python\\Python310\\Scripts`}
               export PATH="$HOME/.local/bin:$PATH"
             </CodeBlock>
           </View>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Advanced Configuration</Text>
+        <Section
+          title="Advanced Configuration"
+          icon={<Terminal size={20} color="#EC4899" />}
+        >
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Find Python Directory</Text>
+            <CodeBlock title="Locate Python">which python3</CodeBlock>
+            <Text style={styles.exampleText}>
+              Example output:{" "}
+              <Text style={styles.inlineCode}>
+                /usr/local/Caskroom/miniconda/base/bin/python3
+              </Text>
+            </Text>
           </View>
 
-          <Text style={styles.subSectionTitle}>Find Python Directory</Text>
-          <CodeBlock title="Locate Python">which python3</CodeBlock>
-          <Text style={styles.exampleText}>
-            Example output:{" "}
-            <Text style={styles.inlineCode}>
-              /usr/local/Caskroom/miniconda/base/bin/python3
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Find Packages Directory</Text>
+            <CodeBlock title="Locate Site Packages">
+              python3 -m site --user-site
+            </CodeBlock>
+            <Text style={styles.exampleText}>
+              Example output:{" "}
+              <Text style={styles.inlineCode}>
+                /Users/user.name/.local/lib/python3.12/site-packages
+              </Text>
             </Text>
-          </Text>
+          </View>
 
-          <Text style={styles.subSectionTitle}>Find Packages Directory</Text>
-          <CodeBlock title="Locate Site Packages">
-            python3 -m site --user-site
-          </CodeBlock>
-          <Text style={styles.exampleText}>
-            Example output:{" "}
-            <Text style={styles.inlineCode}>
-              /Users/user.name/.local/lib/python3.12/site-packages
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Find Coder Executable</Text>
+            <CodeBlock title="Locate Coder">which coder</CodeBlock>
+          </View>
+
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Edit Shell Configuration</Text>
+            <Text style={styles.bodyText}>
+              Open your shell configuration file:
             </Text>
-          </Text>
-
-          <Text style={styles.subSectionTitle}>Find Coder Executable</Text>
-          <CodeBlock title="Locate Coder">which coder</CodeBlock>
-
-          <Text style={styles.subSectionTitle}>Edit Shell Configuration</Text>
-          <Text style={styles.bodyText}>
-            Open your shell configuration file:
-          </Text>
-          <CodeBlock title="Edit Configuration Files">
-            {`# For zsh users
+            <CodeBlock title="Edit Configuration Files">
+              {`# For zsh users
 nano ~/.zshrc
 # or
 code ~/.zshrc
@@ -189,40 +210,43 @@ code ~/.zshrc
 nano ~/.bashrc
 # or
 code ~/.bashrc`}
-          </CodeBlock>
+            </CodeBlock>
+          </View>
 
-          <Text style={styles.subSectionTitle}>Add to PATH</Text>
-          <CodeBlock title="Add Coder to PATH">
-            export PATH="/path/to/your_app:$PATH"
-          </CodeBlock>
-          <Text style={styles.exampleText}>
-            Example:{" "}
-            <Text style={styles.inlineCode}>
-              export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Add to PATH</Text>
+            <CodeBlock title="Add Coder to PATH">
+              export PATH="/path/to/your_app:$PATH"
+            </CodeBlock>
+            <Text style={styles.exampleText}>
+              Example:{" "}
+              <Text style={styles.inlineCode}>
+                export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+              </Text>
             </Text>
-          </Text>
+          </View>
 
-          <Text style={styles.subSectionTitle}>Apply Changes</Text>
-          <CodeBlock title="Reload Configuration">
-            {`# For zsh
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Apply Changes</Text>
+            <CodeBlock title="Reload Configuration">
+              {`# For zsh
 source ~/.zshrc
 
 # For bash
 source ~/.bashrc`}
-          </CodeBlock>
-        </View>
-
-        {/* Success Message */}
-        <View style={styles.successBox}>
-          <View style={styles.successHeader}>
-            <PartyPopper size={24} color="#10B981" />
-            <Text style={styles.successTitle}>Installation Complete!</Text>
+            </CodeBlock>
           </View>
-          <Text style={styles.successText}>
+        </Section>
+
+        <Section
+          title="Installation Complete!"
+          icon={<PartyPopper size={20} color={theme.colors.action.success} />}
+        >
+          <Text style={styles.requirementText}>
             Your Coder package is now installed and configured correctly. You
             can start using the CLI tool for your development workflow.
           </Text>
-        </View>
+        </Section>
       </View>
     </ScrollView>
   );
@@ -231,62 +255,83 @@ source ~/.bashrc`}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#101923",
+    backgroundColor: "#0A0E14",
   },
   contentContainer: {
     flexGrow: 1,
     padding: 20,
   },
   header: {
-    marginBottom: 30,
+    marginBottom: 32,
   },
   backButton: {
     alignSelf: "flex-start",
-    marginBottom: 20,
+    marginBottom: 24,
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    borderRadius: 8,
   },
   backButtonText: {
     fontSize: 16,
     color: "#F8F7F4",
     opacity: 0.8,
+    fontWeight: "500",
+  },
+  titleContainer: {
+    gap: 12,
+  },
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: "bold",
     color: "#F8F7F4",
-    marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
     color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 22,
+    opacity: 0.7,
+    lineHeight: 24,
+    marginLeft: 48,
   },
   content: {
     flex: 1,
+    gap: 24,
   },
-  section: {
+  bodyText: {
+    fontSize: 14,
+    color: "#F8F7F4",
+    opacity: 0.8,
+    lineHeight: 22,
     marginBottom: 16,
   },
-  sectionHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
+  inlineCode: {
+    fontFamily: "monospace",
+    backgroundColor: "#2D3748",
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 6,
+    fontSize: 13,
     color: "#F8F7F4",
   },
-  subSectionTitle: {
-    fontSize: 16,
-    fontWeight: "600",
+  requirementCard: {
+    backgroundColor: "#0D1117",
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#2D3748",
+  },
+  requirementText: {
+    fontSize: 14,
     color: "#F8F7F4",
-    marginTop: 20,
-    marginBottom: 8,
+    opacity: 0.8,
+    lineHeight: 20,
   },
   platformSection: {
     marginTop: 16,
@@ -298,87 +343,55 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
+  platformIconBadge: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#3B82F6",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   platformTitle: {
     fontSize: 18,
     fontWeight: "600",
     color: "#F8F7F4",
   },
-  bodyText: {
-    fontSize: 14,
+  configSection: {
+    marginBottom: 20,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#2D3748",
+  },
+  configTitle: {
+    fontSize: 16,
+    fontWeight: "600",
     color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 20,
-    marginBottom: 12,
+    marginBottom: 8,
   },
   exampleText: {
     fontSize: 13,
     color: "#F8F7F4",
     opacity: 0.7,
+    marginTop: 8,
     marginBottom: 12,
     fontStyle: "italic",
   },
-  inlineCode: {
-    fontFamily: "monospace",
-    backgroundColor: "#0D1117",
-    paddingHorizontal: 4,
-    paddingVertical: 2,
-    borderRadius: 4,
-    fontSize: 13,
-  },
-  requirementCard: {
-    backgroundColor: "#1E293B",
-    padding: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#2D3748",
-  },
-  requirementText: {
-    fontSize: 14,
-    color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 20,
-  },
   infoBox: {
-    backgroundColor: "#1E293B",
-    padding: 12,
-    borderRadius: 6,
-    borderLeftWidth: 3,
+    backgroundColor: "#1E3A8A",
+    padding: 16,
+    borderRadius: 12,
+    borderLeftWidth: 4,
     borderLeftColor: "#3B82F6",
-    marginTop: 8,
+    marginTop: 12,
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 8,
+    gap: 12,
   },
   infoText: {
     fontSize: 13,
     color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 18,
-    flex: 1,
-  },
-  successBox: {
-    backgroundColor: "#1E293B",
-    padding: 20,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#10B981",
-    marginTop: 20,
-  },
-  successHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 8,
-  },
-  successTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#10B981",
-  },
-  successText: {
-    fontSize: 14,
-    color: "#F8F7F4",
-    opacity: 0.8,
+    opacity: 0.9,
     lineHeight: 20,
+    flex: 1,
   },
 });

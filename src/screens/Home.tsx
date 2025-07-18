@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Section from "../components/Section";
+import Section from "../components/HomeSection";
 import { homeSections, HomeNavigationProp } from "../data/homeSections";
 
 export default function Home() {

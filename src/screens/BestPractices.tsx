@@ -28,6 +28,7 @@ import {
 } from "lucide-react-native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import CodeBlock from "../components/CodeBlock";
+import Section from "../components/Section";
 
 type BestPracticesNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -66,13 +67,10 @@ export default function BestPractices() {
 
       <View style={styles.content}>
         {/* Structured Approach */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <View style={styles.iconBadge}>
-              <Target size={20} color="#3B82F6" />
-            </View>
-            <Text style={styles.sectionTitle}>Define Objectives Clearly</Text>
-          </View>
+        <Section 
+          title="Define Objectives Clearly" 
+          icon={<Target size={20} color="#3B82F6" />}
+        >
           <Text style={styles.bodyText}>
             Before requesting the AI to make direct code changes, clearly
             explain your objectives. This helps the AI understand the context
@@ -92,18 +90,13 @@ export default function BestPractices() {
               ask the Coder to execute (coder apply).
             </Text>
           </View>
-        </View>
+        </Section>
 
         {/* Review Process */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <View style={styles.iconBadge}>
-              <Eye size={20} color="#10B981" />
-            </View>
-            <Text style={styles.sectionTitle}>
-              Review the Suggested Solution
-            </Text>
-          </View>
+        <Section 
+          title="Review the Suggested Solution" 
+          icon={<Eye size={20} color="#10B981" />}
+        >
           <Text style={styles.bodyText}>
             After providing the context and requirements, ask the AI to review
             the proposed solution before implementing it. This allows for
@@ -134,33 +127,25 @@ export default function BestPractices() {
               <Text style={styles.processText}>Iterative refinement</Text>
             </View>
           </View>
-        </View>
+        </Section>
 
         {/* Iterative Refinement */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <View style={styles.iconBadge}>
-              <RefreshCw size={20} color="#8B5CF6" />
-            </View>
-            <Text style={styles.sectionTitle}>Iterative Refinement</Text>
-          </View>
+        <Section 
+          title="Iterative Refinement" 
+          icon={<RefreshCw size={20} color="#8B5CF6" />}
+        >
           <Text style={styles.bodyText}>
             Be prepared to provide one or two additional prompts to adjust the
             solution based on the AI's review. This iterative process can lead
             to a more accurate final implementation.
           </Text>
-        </View>
+        </Section>
 
         {/* Session Context */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <View style={styles.iconBadge}>
-              <Brain size={20} color="#F59E0B" />
-            </View>
-            <Text style={styles.sectionTitle}>
-              Understanding Session Context
-            </Text>
-          </View>
+        <Section 
+          title="Understanding Session Context" 
+          icon={<Brain size={20} color="#F59E0B" />}
+        >
           <Text style={styles.bodyText}>
             When using the <Text style={styles.inlineCode}>coder apply</Text>{" "}
             command, it's important to understand how the AI considers the
@@ -175,16 +160,13 @@ export default function BestPractices() {
               been suggested.
             </Text>
           </View>
-        </View>
+        </Section>
 
         {/* Personas */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <View style={styles.iconBadge}>
-              <Users size={20} color="#EC4899" />
-            </View>
-            <Text style={styles.sectionTitle}>Usage of Personas</Text>
-          </View>
+        <Section 
+          title="Usage of Personas" 
+          icon={<Users size={20} color="#EC4899" />}
+        >
           <Text style={styles.bodyText}>
             Personas are fictional characters that represent different user
             types who might interact with a system. In the context of using LLM
@@ -237,16 +219,13 @@ export default function BestPractices() {
               </View>
             </View>
           </View>
-        </View>
+        </Section>
 
         {/* Prompts and Best Practices */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <View style={styles.iconBadge}>
-              <MessageCircle size={20} color="#06B6D4" />
-            </View>
-            <Text style={styles.sectionTitle}>Crafting Effective Prompts</Text>
-          </View>
+        <Section 
+          title="Crafting Effective Prompts" 
+          icon={<MessageCircle size={20} color="#06B6D4" />}
+        >
           <Text style={styles.bodyText}>
             The quality of the output generated by an LLM agent heavily depends
             on how well the prompts are crafted. Here are some best practices:
@@ -291,17 +270,13 @@ export default function BestPractices() {
               generation.
             </Text>
           </View>
-        </View>
+        </Section>
 
         {/* Model Usage */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <View style={styles.iconBadge}>
-              <Zap size={20} color="#F59E0B" />
-            </View>
-            <Text style={styles.sectionTitle}>Usage of Models</Text>
-          </View>
-
+        <Section 
+          title="Usage of Models" 
+          icon={<Zap size={20} color="#F59E0B" />}
+        >
           <View style={styles.modelsList}>
             <View style={styles.modelItem}>
               <Text style={styles.modelTitle}>
@@ -332,7 +307,7 @@ export default function BestPractices() {
               </Text>
             </View>
           </View>
-        </View>
+        </Section>
 
         {/* Important Warning */}
         <View style={styles.warningSection}>
@@ -434,32 +409,6 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 24,
   },
-  section: {
-    backgroundColor: "#1A1F2E",
-    borderRadius: 16,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: "#2D3748",
-  },
-  sectionHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 16,
-  },
-  iconBadge: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "#2D3748",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-  },
   bodyText: {
     fontSize: 14,
     color: "#F8F7F4",
@@ -479,8 +428,7 @@ const styles = StyleSheet.create({
   exampleBox: {
     backgroundColor: "#0D1117",
     padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
+    borderRadius: 12,borderWidth: 1,
     borderColor: "#2D3748",
     marginTop: 8,
   },
