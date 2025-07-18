@@ -3,13 +3,17 @@ import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const BackButton = () => {
+type BackButtonProps = {
+  onClick?: () => void;
+};
+
+const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       style={styles.backButton}
-      onPress={() => navigation.goBack()}
+      onPress={onClick || (() => navigation.goBack())}
       activeOpacity={0.7}
     >
       <ArrowLeft size={20} color="#F8F7F4" />

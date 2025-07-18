@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Section from "../components/HomeSection";
 import { homeSections, HomeNavigationProp } from "../data/homeSections";
@@ -13,6 +13,12 @@ export default function Home() {
       contentContainerStyle={styles.contentContainer}
     >
       <View style={styles.header}>
+        <View style={styles.iconContainer}>
+          <Image
+            source={require("../../assets/ciandt_logo.png")}
+            style={styles.logo}
+          />
+        </View>
         <Text style={styles.title}>Coder CLI Tutorial</Text>
         <Text style={styles.subtitle}>
           Transform your development with Coder
@@ -57,9 +63,29 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
   },
+  iconContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    backgroundColor: "#1E293B",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+    shadowColor: "#F8F7F4",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
+    maxHeight: 60,
+    maxWidth: 80,
+  },
   header: {
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: 24,
     paddingTop: 20,
   },
   title: {

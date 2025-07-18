@@ -31,7 +31,7 @@ export default function BestPractices() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <BackButton />
+        <BackButton onClick={() => navigation.navigate(ScreenNames.Home)} />
       </View>
 
       <ScrollView

@@ -15,9 +15,12 @@ const Hero: React.FC<HeroProps> = ({
   iconComponent: IconComponent,
   iconColor,
 }) => {
+  // Create a background color with the same hue as iconColor but with 0.2 opacity
+  const iconBackgroundColor = `${iconColor}33`; // 33 is 20% opacity in hex
+
   return (
     <View style={styles.heroSection}>
-      <View style={styles.heroIconContainer}>
+      <View style={[styles.heroIconContainer, { backgroundColor: iconBackgroundColor }]}>
         <IconComponent size={32} color={iconColor} />
       </View>
       <Text style={styles.heroTitle}>{title}</Text>
@@ -38,7 +41,6 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: "rgba(245, 158, 11, 0.2)",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 8,
