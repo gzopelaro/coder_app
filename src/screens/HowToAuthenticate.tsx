@@ -5,14 +5,11 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootStack";
-import * as Clipboard from "expo-clipboard";
 import {
-  Copy,
   ArrowLeft,
   PartyPopper,
   Info,
@@ -22,6 +19,7 @@ import {
   ExternalLink,
 } from "lucide-react-native";
 import { ScreenNames } from "../navigation/ScreenNames";
+import CodeBlock from "../components/CodeBlock";
 
 type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -30,33 +28,6 @@ type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
 
 export default function HowToAuthenticate() {
   const navigation = useNavigation<HowToAuthenticateNavigationProp>();
-
-  const copyToClipboard = async (text: string) => {
-    await Clipboard.setStringAsync(text);
-    Alert.alert("Copied!", "Code copied to clipboard");
-  };
-
-  const CodeBlock = ({
-    children,
-    title,
-  }: {
-    children: string;
-    title?: string;
-  }) => (
-    <View style={styles.codeContainer}>
-      {title && <Text style={styles.codeTitle}>{title}</Text>}
-      <View style={styles.codeBlock}>
-        <Text style={styles.codeText}>{children}</Text>
-        <TouchableOpacity
-          style={styles.copyButton}
-          onPress={() => copyToClipboard(children)}
-        >
-          <Copy size={14} color="#F8F7F4" />
-          <Text style={styles.copyButtonText}>Copy</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
 
   return (
     <ScrollView
@@ -176,12 +147,12 @@ export default function HowToAuthenticate() {
 
           <Text style={styles.subSectionTitle}>Switch Active Tenant</Text>
           <CodeBlock title="Switch Tenant">
-            coder auth switch --tenant {"<tenant_name>"}
+            {`coder auth switch --tenant <tenant_name>`}
           </CodeBlock>
 
           <Text style={styles.subSectionTitle}>Remove a Tenant</Text>
           <CodeBlock title="Remove Tenant">
-            coder auth remove --tenant {"<tenant_name>"}
+            {`coder auth remove --tenant <tenant_name>`}
           </CodeBlock>
         </View>
 
@@ -355,48 +326,6 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   bold: {
-    fontWeight: "600",
-  },
-  codeContainer: {
-    marginVertical: 8,
-  },
-  codeTitle: {
-    fontSize: 12,
-    color: "#F8F7F4",
-    opacity: 0.6,
-    marginBottom: 4,
-    fontWeight: "600",
-  },
-  codeBlock: {
-    backgroundColor: "#0D1117",
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#2D3748",
-    position: "relative",
-  },
-  codeText: {
-    fontSize: 13,
-    color: "#F8F7F4",
-    fontFamily: "monospace",
-    lineHeight: 18,
-    padding: 16,
-    paddingRight: 80,
-  },
-  copyButton: {
-    position: "absolute",
-    top: 8,
-    right: 8,
-    backgroundColor: "#2D3748",
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  copyButtonText: {
-    fontSize: 12,
-    color: "#F8F7F4",
     fontWeight: "600",
   },
   infoBox: {

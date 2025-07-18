@@ -5,14 +5,11 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootStack";
-import * as Clipboard from "expo-clipboard";
 import {
-  Copy,
   ArrowLeft,
   PartyPopper,
   Info,
@@ -30,6 +27,7 @@ import {
   BookOpen,
 } from "lucide-react-native";
 import { ScreenNames } from "../navigation/ScreenNames";
+import CodeBlock from "../components/CodeBlock";
 
 type BestPracticesNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -38,33 +36,6 @@ type BestPracticesNavigationProp = NativeStackNavigationProp<
 
 export default function BestPractices() {
   const navigation = useNavigation<BestPracticesNavigationProp>();
-
-  const copyToClipboard = async (text: string) => {
-    await Clipboard.setStringAsync(text);
-    Alert.alert("Copied!", "Code copied to clipboard");
-  };
-
-  const CodeBlock = ({
-    children,
-    title,
-  }: {
-    children: string;
-    title?: string;
-  }) => (
-    <View style={styles.codeContainer}>
-      {title && <Text style={styles.codeTitle}>{title}</Text>}
-      <View style={styles.codeBlock}>
-        <Text style={styles.codeText}>{children}</Text>
-        <TouchableOpacity
-          style={styles.copyButton}
-          onPress={() => copyToClipboard(children)}
-        >
-          <Copy size={14} color="#F8F7F4" />
-          <Text style={styles.copyButtonText}>Copy</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
 
   return (
     <ScrollView
@@ -288,8 +259,7 @@ export default function BestPractices() {
               are, the better the model can understand your needs.
             </Text>
             <CodeBlock title="Example Command">
-              coder run --prompt "Generate a function that calculates the
-              factorial of a number in Python."
+              {`coder run --prompt "Generate a function that calculates the factorial of a number in Python."`}
             </CodeBlock>
           </View>
 
@@ -309,8 +279,7 @@ export default function BestPractices() {
               alignment with your objectives.
             </Text>
             <CodeBlock title="Example Request">
-              Before generating the code, please review the proposed solution
-              and let me know if there are any improvements.
+              {`Before generating the code, please review the proposed solution and let me know if there are any improvements.`}
             </CodeBlock>
           </View>
 
@@ -661,51 +630,6 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     lineHeight: 22,
     marginBottom: 12,
-  },
-  codeContainer: {
-    marginVertical: 8,
-  },
-  codeTitle: {
-    fontSize: 12,
-    color: "#F8F7F4",
-    opacity: 0.6,
-    marginBottom: 6,
-    fontWeight: "600",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  codeBlock: {
-    backgroundColor: "#0D1117",
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#2D3748",
-    position: "relative",
-    overflow: "hidden",
-  },
-  codeText: {
-    fontSize: 13,
-    color: "#F8F7F4",
-    fontFamily: "monospace",
-    lineHeight: 20,
-    padding: 16,
-    paddingRight: 80,
-  },
-  copyButton: {
-    position: "absolute",
-    top: 12,
-    right: 12,
-    backgroundColor: "#2D3748",
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderRadius: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-  },
-  copyButtonText: {
-    fontSize: 12,
-    color: "#F8F7F4",
-    fontWeight: "600",
   },
   infoBox: {
     backgroundColor: "#1E3A8A",
