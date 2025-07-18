@@ -8,6 +8,9 @@ import {
   Rocket,
   Sparkles,
   LucideIcon,
+  Download,
+  Play,
+  Lightbulb,
 } from "lucide-react-native";
 import { colors } from "../theme/colors";
 
@@ -30,7 +33,7 @@ export const getHomeSections = (): SectionItem[] => [
     id: "install",
     title: "How to Install",
     subtitle: "Initial setup of Coder CLI",
-    iconComponent: Package,
+    iconComponent: Download,
     iconColor: colors.coral[500],
     navigateTo: ScreenNames.HowToInstall,
   },
@@ -54,7 +57,7 @@ export const getHomeSections = (): SectionItem[] => [
     id: "best-practices",
     title: "Best Practices",
     subtitle: "Tips to optimize your workflow",
-    iconComponent: Sparkles,
+    iconComponent: Lightbulb,
     iconColor: colors.accent.softPink,
     navigateTo: ScreenNames.BestPractices,
   },

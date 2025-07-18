@@ -55,7 +55,7 @@ export default function HowToInstall() {
 
         <View style={styles.titleContainer}>
           <View style={styles.titleRow}>
-            <Download size={32} color="#3B82F6" />
+            <Download size={32} color={theme.colors.coral[500]} />
             <Text style={styles.title}>How to Install</Text>
           </View>
           <Text style={styles.subtitle}>

@@ -29,6 +29,7 @@ import {
 import { ScreenNames } from "../navigation/ScreenNames";
 import CodeBlock from "../components/CodeBlock";
 import Section from "../components/Section";
+import { theme } from "../theme";
 
 type BestPracticesNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -56,7 +57,7 @@ export default function BestPractices() {
 
         <View style={styles.titleContainer}>
           <View style={styles.titleRow}>
-            <Lightbulb size={32} color="#F59E0B" />
+            <Lightbulb size={32} color={theme.colors.accent.softPink} />
             <Text style={styles.title}>Best Practices</Text>
           </View>
           <Text style={styles.subtitle}>
@@ -67,8 +68,8 @@ export default function BestPractices() {
 
       <View style={styles.content}>
         {/* Structured Approach */}
-        <Section 
-          title="Define Objectives Clearly" 
+        <Section
+          title="Define Objectives Clearly"
           icon={<Target size={20} color="#3B82F6" />}
         >
           <Text style={styles.bodyText}>
@@ -93,8 +94,8 @@ export default function BestPractices() {
         </Section>
 
         {/* Review Process */}
-        <Section 
-          title="Review the Suggested Solution" 
+        <Section
+          title="Review the Suggested Solution"
           icon={<Eye size={20} color="#10B981" />}
         >
           <Text style={styles.bodyText}>
@@ -130,8 +131,8 @@ export default function BestPractices() {
         </Section>
 
         {/* Iterative Refinement */}
-        <Section 
-          title="Iterative Refinement" 
+        <Section
+          title="Iterative Refinement"
           icon={<RefreshCw size={20} color="#8B5CF6" />}
         >
           <Text style={styles.bodyText}>
@@ -142,8 +143,8 @@ export default function BestPractices() {
         </Section>
 
         {/* Session Context */}
-        <Section 
-          title="Understanding Session Context" 
+        <Section
+          title="Understanding Session Context"
           icon={<Brain size={20} color="#F59E0B" />}
         >
           <Text style={styles.bodyText}>
@@ -163,8 +164,8 @@ export default function BestPractices() {
         </Section>
 
         {/* Personas */}
-        <Section 
-          title="Usage of Personas" 
+        <Section
+          title="Usage of Personas"
           icon={<Users size={20} color="#EC4899" />}
         >
           <Text style={styles.bodyText}>
@@ -222,8 +223,8 @@ export default function BestPractices() {
         </Section>
 
         {/* Prompts and Best Practices */}
-        <Section 
-          title="Crafting Effective Prompts" 
+        <Section
+          title="Crafting Effective Prompts"
           icon={<MessageCircle size={20} color="#06B6D4" />}
         >
           <Text style={styles.bodyText}>
@@ -273,8 +274,8 @@ export default function BestPractices() {
         </Section>
 
         {/* Model Usage */}
-        <Section 
-          title="Usage of Models" 
+        <Section
+          title="Usage of Models"
           icon={<Zap size={20} color="#F59E0B" />}
         >
           <View style={styles.modelsList}>
@@ -428,7 +429,8 @@ const styles = StyleSheet.create({
   exampleBox: {
     backgroundColor: "#0D1117",
     padding: 16,
-    borderRadius: 12,borderWidth: 1,
+    borderRadius: 12,
+    borderWidth: 1,
     borderColor: "#2D3748",
     marginTop: 8,
   },

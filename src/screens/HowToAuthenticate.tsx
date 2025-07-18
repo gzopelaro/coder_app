@@ -20,6 +20,8 @@ import {
 } from "lucide-react-native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import CodeBlock from "../components/CodeBlock";
+import Section from "../components/Section";
+import { theme } from "../theme";
 
 type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -33,27 +35,34 @@ export default function HowToAuthenticate() {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
+      showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}
+          activeOpacity={0.7}
         >
           <ArrowLeft size={20} color="#F8F7F4" style={{ opacity: 0.8 }} />
           <Text style={styles.backButtonText}>Back</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>How to Authenticate</Text>
-        <Text style={styles.subtitle}>
-          Complete guide to authenticate with the Coder CLI tool
-        </Text>
+
+        <View style={styles.titleContainer}>
+          <View style={styles.titleRow}>
+            <Key size={32} color={theme.colors.action.warning} />
+            <Text style={styles.title}>How to Authenticate</Text>
+          </View>
+          <Text style={styles.subtitle}>
+            Complete guide to authenticate with the Coder CLI tool
+          </Text>
+        </View>
       </View>
 
       <View style={styles.content}>
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Key size={24} color="#F59E0B" />
-            <Text style={styles.sectionTitle}>Step 1: Generate an API Key</Text>
-          </View>
+        <Section
+          title="Step 1: Generate an API Key"
+          icon={<Key size={20} color="#F59E0B" />}
+        >
           <Text style={styles.bodyText}>
             Visit the Flow API Keys page to generate your API key
             (client/secret).
@@ -69,13 +78,12 @@ export default function HowToAuthenticate() {
               Make sure to save these credentials securely.
             </Text>
           </View>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Shield size={24} color="#10B981" />
-            <Text style={styles.sectionTitle}>Step 2: Add Your Tenant</Text>
-          </View>
+        <Section
+          title="Step 2: Add Your Tenant"
+          icon={<Shield size={20} color="#10B981" />}
+        >
           <Text style={styles.bodyText}>
             Execute the following command to add a new tenant with its API key
             and set it as the active tenant:
@@ -100,15 +108,12 @@ export default function HowToAuthenticate() {
               - Your client secret from the API keys page
             </Text>
           </View>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <CheckCircle size={24} color="#10B981" />
-            <Text style={styles.sectionTitle}>
-              Step 3: Verify Authentication
-            </Text>
-          </View>
+        <Section
+          title="Step 3: Verify Authentication"
+          icon={<CheckCircle size={20} color="#10B981" />}
+        >
           <Text style={styles.bodyText}>
             Check if your authentication was successful by running:
           </Text>
@@ -117,12 +122,12 @@ export default function HowToAuthenticate() {
             This command will show all configured tenants and indicate which one
             is currently active.
           </Text>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Example Usage</Text>
-          </View>
+        <Section
+          title="Example Usage"
+          icon={<ExternalLink size={20} color="#8B5CF6" />}
+        >
           <Text style={styles.bodyText}>
             Here's a complete example of how to authenticate:
           </Text>
@@ -135,31 +140,36 @@ export default function HowToAuthenticate() {
             <Text style={styles.inlineCode}>xyz789secretkey</Text> with your
             actual credentials.
           </Text>
-        </View>
+        </Section>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Additional Commands</Text>
+        <Section
+          title="Additional Commands"
+          icon={<Info size={20} color="#EC4899" />}
+        >
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>List All Tenants</Text>
+            <CodeBlock title="List Tenants">coder auth list</CodeBlock>
           </View>
 
-          <Text style={styles.subSectionTitle}>List All Tenants</Text>
-          <CodeBlock title="List Tenants">coder auth list</CodeBlock>
-
-          <Text style={styles.subSectionTitle}>Switch Active Tenant</Text>
-          <CodeBlock title="Switch Tenant">
-            {`coder auth switch --tenant <tenant_name>`}
-          </CodeBlock>
-
-          <Text style={styles.subSectionTitle}>Remove a Tenant</Text>
-          <CodeBlock title="Remove Tenant">
-            {`coder auth remove --tenant <tenant_name>`}
-          </CodeBlock>
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Troubleshooting</Text>
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Switch Active Tenant</Text>
+            <CodeBlock title="Switch Tenant">
+              {`coder auth switch --tenant <tenant_name>`}
+            </CodeBlock>
           </View>
+
+          <View style={styles.configSection}>
+            <Text style={styles.configTitle}>Remove a Tenant</Text>
+            <CodeBlock title="Remove Tenant">
+              {`coder auth remove --tenant <tenant_name>`}
+            </CodeBlock>
+          </View>
+        </Section>
+
+        <Section
+          title="Troubleshooting"
+          icon={<Shield size={20} color="#F43F5E" />}
+        >
           <View style={styles.troubleshootingCard}>
             <Text style={styles.troubleshootingTitle}>Common Issues:</Text>
             <Text style={styles.troubleshootingText}>
@@ -175,19 +185,17 @@ export default function HowToAuthenticate() {
               internet connection
             </Text>
           </View>
-        </View>
+        </Section>
 
-        {/* Success Message */}
-        <View style={styles.successBox}>
-          <View style={styles.successHeader}>
-            <PartyPopper size={24} color="#10B981" />
-            <Text style={styles.successTitle}>Authentication Complete!</Text>
-          </View>
-          <Text style={styles.successText}>
+        <Section
+          title="Authentication Complete!"
+          icon={<PartyPopper size={20} color={theme.colors.action.success} />}
+        >
+          <Text style={styles.requirementText}>
             Your Coder CLI is now authenticated and ready to use. You can start
             executing commands with your configured tenant.
           </Text>
-        </View>
+        </Section>
       </View>
     </ScrollView>
   );
@@ -196,89 +204,83 @@ export default function HowToAuthenticate() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#101923",
+    backgroundColor: "#0A0E14",
   },
   contentContainer: {
     flexGrow: 1,
     padding: 20,
   },
   header: {
-    marginBottom: 30,
+    marginBottom: 32,
   },
   backButton: {
     alignSelf: "flex-start",
-    marginBottom: 20,
+    marginBottom: 24,
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    borderRadius: 8,
   },
   backButtonText: {
     fontSize: 16,
     color: "#F8F7F4",
     opacity: 0.8,
+    fontWeight: "500",
+  },
+  titleContainer: {
+    gap: 12,
+  },
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: "bold",
     color: "#F8F7F4",
-    marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
     color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 22,
+    opacity: 0.7,
+    lineHeight: 24,
+    marginLeft: 48,
   },
   content: {
     flex: 1,
-  },
-  section: {
-    marginBottom: 16,
-  },
-  sectionHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-  },
-  subSectionTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#F8F7F4",
-    marginTop: 20,
-    marginBottom: 8,
+    gap: 24,
   },
   bodyText: {
     fontSize: 14,
     color: "#F8F7F4",
     opacity: 0.8,
-    lineHeight: 20,
-    marginBottom: 12,
+    lineHeight: 22,
+    marginBottom: 16,
   },
   exampleText: {
     fontSize: 13,
     color: "#F8F7F4",
     opacity: 0.7,
+    marginTop: 8,
     marginBottom: 12,
     fontStyle: "italic",
   },
   inlineCode: {
     fontFamily: "monospace",
-    backgroundColor: "#0D1117",
-    paddingHorizontal: 4,
-    paddingVertical: 2,
-    borderRadius: 4,
+    backgroundColor: "#2D3748",
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 6,
     fontSize: 13,
+    color: "#F8F7F4",
   },
   requirementCard: {
-    backgroundColor: "#1E293B",
+    backgroundColor: "#0D1117",
     padding: 16,
-    borderRadius: 8,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: "#2D3748",
   },
@@ -287,7 +289,6 @@ const styles = StyleSheet.create({
     color: "#F8F7F4",
     opacity: 0.8,
     lineHeight: 20,
-    marginBottom: 4,
   },
   linkBox: {
     backgroundColor: "#1E293B",
@@ -306,9 +307,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   troubleshootingCard: {
-    backgroundColor: "#1E293B",
+    backgroundColor: "#0D1117",
     padding: 16,
-    borderRadius: 8,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: "#2D3748",
   },
@@ -329,46 +330,33 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   infoBox: {
-    backgroundColor: "#1E293B",
-    padding: 12,
-    borderRadius: 6,
-    borderLeftWidth: 3,
+    backgroundColor: "#1E3A8A",
+    padding: 16,
+    borderRadius: 12,
+    borderLeftWidth: 4,
     borderLeftColor: "#3B82F6",
-    marginTop: 8,
+    marginTop: 12,
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 8,
+    gap: 12,
   },
   infoText: {
     fontSize: 13,
     color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 18,
+    opacity: 0.9,
+    lineHeight: 20,
     flex: 1,
   },
-  successBox: {
-    backgroundColor: "#1E293B",
-    padding: 20,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#10B981",
-    marginTop: 20,
+  configSection: {
+    marginBottom: 20,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#2D3748",
   },
-  successHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 8,
-  },
-  successTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#10B981",
-  },
-  successText: {
-    fontSize: 14,
+  configTitle: {
+    fontSize: 16,
+    fontWeight: "600",
     color: "#F8F7F4",
-    opacity: 0.8,
-    lineHeight: 20,
+    marginBottom: 8,
   },
 });
