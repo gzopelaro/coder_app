@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Linking,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -31,6 +32,10 @@ type HowToAuthenticateNavigationProp = NativeStackNavigationProp<
 
 export default function HowToAuthenticate() {
   const navigation = useNavigation<HowToAuthenticateNavigationProp>();
+
+  const handleOpenFlowApiKeys = () => {
+    Linking.openURL("https://flow.ciandt.com/settings/api-keys");
+  };
 
   return (
     <View style={styles.container}>
@@ -62,10 +67,10 @@ export default function HowToAuthenticate() {
               Visit the Flow API Keys page to generate your API key
               (client/secret).
             </Text>
-            <View style={styles.linkBox}>
+            <TouchableOpacity style={styles.linkBox} onPress={handleOpenFlowApiKeys}>
               <ExternalLink size={16} color="#3B82F6" />
               <Text style={styles.linkText}>Flow API Keys</Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.infoBox}>
               <Info size={16} color="#3B82F6" />
               <Text style={styles.infoText}>
