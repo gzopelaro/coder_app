@@ -1,15 +1,11 @@
 import { RootStackParamList } from "../navigation/RootStack";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ScreenNames } from "../navigation/ScreenNames";
-import React, { ReactNode } from "react";
 import {
-  Package,
   Key,
   Rocket,
-  Sparkles,
   LucideIcon,
   Download,
-  Play,
   Lightbulb,
 } from "lucide-react-native";
 import { colors } from "../theme/colors";
