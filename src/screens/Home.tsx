@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Section from "../components/HomeSection";
 import { homeSections, HomeNavigationProp } from "../data/homeSections";
+import { theme } from "../theme";
 
 export default function Home() {
   const navigation = useNavigation<HomeNavigationProp>();
@@ -32,7 +33,7 @@ export default function Home() {
         {homeSections.map((section, index) => (
           <View
             key={section.id}
-            style={index > 0 ? { marginTop: 16 } : undefined}
+            style={index > 0 ? { marginTop: theme.spacing.md } : undefined}
           >
             <Section
               title={section.title}
@@ -57,25 +58,21 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#101923",
+    backgroundColor: theme.colors.background.primary,
   },
   contentContainer: {
     flexGrow: 1,
-    padding: 20,
+    padding: theme.spacing.lg,
   },
   iconContainer: {
     width: 100,
     height: 100,
     borderRadius: 100,
-    backgroundColor: "#1E293B",
+    backgroundColor: theme.colors.background.secondary,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
-    shadowColor: "#F8F7F4",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 5,
+    marginBottom: theme.spacing.lg,
+    ...theme.shadows.lg,
   },
   logo: {
     width: "100%",
@@ -85,26 +82,26 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: 24,
-    paddingTop: 20,
+    marginBottom: theme.spacing.xl,
+    paddingTop: theme.spacing.lg,
   },
   title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-    marginBottom: 6,
+    fontSize: theme.typography.sizes.xxxl,
+    fontWeight: theme.typography.weights.bold,
+    color: theme.colors.text.primary,
+    marginBottom: theme.spacing.xs,
     textAlign: "center",
   },
   subtitle: {
-    fontSize: 18,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.lg,
+    color: theme.colors.text.primary,
     opacity: 0.9,
-    marginBottom: 8,
+    marginBottom: theme.spacing.sm,
     textAlign: "center",
   },
   description: {
-    fontSize: 14,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
     opacity: 0.7,
     textAlign: "center",
   },
@@ -112,13 +109,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   footer: {
-    marginTop: 40,
+    marginTop: theme.spacing.xxxl,
     alignItems: "center",
-    paddingVertical: 20,
+    paddingVertical: theme.spacing.lg,
   },
   footerText: {
-    fontSize: 16,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     textAlign: "center",
     fontStyle: "italic",

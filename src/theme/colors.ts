@@ -4,7 +4,7 @@ export const colors = {
   tertiary: "#B4DCFA", // Light Blue
 
   background: {
-    primary: "#000050", // Navy Blue escuro
+    primary: "#101923", // Navy Blue escuro
     secondary: "#242459", // Navy Blue médio
     surface: "#393973", // Navy Blue claro
     card: "#242459",
