@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LucideIcon } from "lucide-react-native";
+import { theme } from "../theme";
 
 type HomeSectionProps = {
   title: string;
@@ -39,39 +40,36 @@ const HomeSection: React.FC<HomeSectionProps> = ({
 
 const styles = StyleSheet.create({
   sectionCard: {
-    backgroundColor: "#1E293B",
+    backgroundColor: theme.colors.background.secondary,
     borderRadius: 16,
-    padding: 20,
+    padding: theme.spacing.lg,
     flexDirection: "row",
     alignItems: "center",
-    shadowColor: "#F8F7F4",
-    shadowOpacity: 0.08,
-    shadowRadius: 2,
-    elevation: 8,
+    ...theme.shadows.lg,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
   },
   sectionIcon: {
     width: 48,
     height: 48,
-    backgroundColor: "#2D3748",
+    backgroundColor: theme.colors.background.surface,
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 16,
+    marginRight: theme.spacing.md,
   },
   sectionContent: {
     flex: 1,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-    marginBottom: 4,
+    fontSize: theme.typography.sizes.lg,
+    fontWeight: theme.typography.weights.bold,
+    color: theme.colors.text.primary,
+    marginBottom: theme.spacing.xs,
   },
   sectionSubtitle: {
-    fontSize: 14,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
     opacity: 0.7,
     lineHeight: 18,
   },
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
   },
   arrowText: {
     fontSize: 24,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     opacity: 0.6,
     fontWeight: "300",
   },
