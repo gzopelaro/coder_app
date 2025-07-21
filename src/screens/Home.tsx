@@ -1,12 +1,41 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  FlatList,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Section from "../components/HomeSection";
-import { homeSections, HomeNavigationProp } from "../data/homeSections";
+import {
+  homeSections,
+  HomeNavigationProp,
+  SectionItem,
+} from "../data/homeSections";
 import { theme } from "../theme";
 
 export default function Home() {
   const navigation = useNavigation<HomeNavigationProp>();
+
+  const renderSection = ({
+    item,
+    index,
+  }: {
+    item: SectionItem;
+    index: number;
+  }) => (
+    <View style={index > 0 ? { marginTop: theme.spacing.md } : undefined}>
+      <Section
+        title={item.title}
+        subtitle={item.subtitle}
+        iconComponent={item.iconComponent}
+        iconColor={item.iconColor}
+        onPress={() => navigation.navigate(item.navigateTo)}
+      />
+    </View>
+  );
 
   return (
     <ScrollView
@@ -30,26 +59,12 @@ export default function Home() {
       </View>
 
       <View style={styles.sectionsContainer}>
-        {homeSections.map((section, index) => (
-          <View
-            key={section.id}
-            style={index > 0 ? { marginTop: theme.spacing.md } : undefined}
-          >
-            <Section
-              title={section.title}
-              subtitle={section.subtitle}
-              iconComponent={section.iconComponent}
-              iconColor={section.iconColor}
-              onPress={() => navigation.navigate(section.navigateTo)}
-            />
-          </View>
-        ))}
-      </View>
-
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Ready to start your journey with Coder CLI?
-        </Text>
+        <FlatList
+          data={homeSections}
+          renderItem={renderSection}
+          keyExtractor={(item) => item.id}
+          scrollEnabled={false}
+        />
       </View>
     </ScrollView>
   );
@@ -107,17 +122,5 @@ const styles = StyleSheet.create({
   },
   sectionsContainer: {
     flex: 1,
-  },
-  footer: {
-    marginTop: theme.spacing.xxxl,
-    alignItems: "center",
-    paddingVertical: theme.spacing.lg,
-  },
-  footerText: {
-    fontSize: theme.typography.sizes.md,
-    color: theme.colors.text.primary,
-    opacity: 0.8,
-    textAlign: "center",
-    fontStyle: "italic",
   },
 });
