@@ -26,7 +26,7 @@ export default function Home() {
     item: SectionItem;
     index: number;
   }) => (
-    <View style={index > 0 ? { marginTop: theme.spacing.md } : undefined}>
+    <View style={{ marginTop: theme.spacing.md }}>
       <Section
         title={item.title}
         subtitle={item.subtitle}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: theme.spacing.xl,
+    marginBottom: theme.spacing.md,
     paddingTop: theme.spacing.lg,
   },
   title: {
