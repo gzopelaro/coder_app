@@ -66,7 +66,7 @@ export default function HowToAuthenticate() {
         <View style={styles.content}>
           <Section
             title="Step 1: Generate an API Key"
-            icon={<Key size={20} color="#F59E0B" />}
+            icon={<Key size={20} color={theme.colors.action.warning} />}
           >
             <Text style={styles.bodyText}>
               Visit the Flow API Keys page to generate your API key
@@ -76,11 +76,11 @@ export default function HowToAuthenticate() {
               style={styles.linkBox}
               onPress={handleOpenFlowApiKeys}
             >
-              <ExternalLink size={16} color="#3B82F6" />
+              <ExternalLink size={16} color={theme.colors.action.info} />
               <Text style={styles.linkText}>Flow API Keys</Text>
             </TouchableOpacity>
             <View style={styles.infoBox}>
-              <Info size={16} color="#3B82F6" />
+              <Info size={16} color={theme.colors.action.info} />
               <Text style={styles.infoText}>
                 You'll need both a client ID and client secret for
                 authentication. Make sure to save these credentials securely.
@@ -90,7 +90,7 @@ export default function HowToAuthenticate() {
 
           <Section
             title="Step 2: Add Your Tenant"
-            icon={<Shield size={20} color="#10B981" />}
+            icon={<Shield size={20} color={theme.colors.action.success} />}
           >
             <Text style={styles.bodyText}>
               Execute the following command to add a new tenant with its API key
@@ -121,7 +121,7 @@ export default function HowToAuthenticate() {
 
           <Section
             title="Step 3: Verify Authentication"
-            icon={<CheckCircle size={20} color="#10B981" />}
+            icon={<CheckCircle size={20} color={theme.colors.action.success} />}
           >
             <Text style={styles.bodyText}>
               Check if your authentication was successful by running:
@@ -215,172 +215,172 @@ export default function HowToAuthenticate() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0E14",
+    backgroundColor: theme.colors.background.primary,
   },
   contentContainer: {
-    paddingBottom: 40,
+    paddingBottom: theme.spacing.xxl + theme.spacing.sm,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingHorizontal: theme.spacing.md,
+    paddingTop: theme.spacing.md,
+    paddingBottom: theme.spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   backButton: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 8,
+    padding: theme.spacing.sm,
   },
   backButtonText: {
-    fontSize: 16,
-    color: "#F8F7F4",
-    marginLeft: 8,
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.text.primary,
+    marginLeft: theme.spacing.sm,
   },
   heroSection: {
-    paddingTop: 32,
-    paddingBottom: 16,
-    paddingHorizontal: 16,
+    paddingTop: theme.spacing.xxxl,
+    paddingBottom: theme.spacing.md,
+    paddingHorizontal: theme.spacing.md,
     alignItems: "center",
-    gap: 16,
+    gap: theme.spacing.md,
   },
   heroIconContainer: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: "rgba(245, 158, 11, 0.2)",
+    backgroundColor: `rgba(245, 158, 11, 0.2)`,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: theme.spacing.sm,
   },
   heroTitle: {
     fontSize: 28,
-    fontWeight: "bold",
-    color: "#F8F7F4",
+    fontWeight: theme.typography.weights.bold,
+    color: theme.colors.text.primary,
     textAlign: "center",
   },
   heroSubtitle: {
-    fontSize: 16,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.text.primary,
     opacity: 0.7,
     textAlign: "center",
     lineHeight: 24,
-    paddingHorizontal: 20,
+    paddingHorizontal: theme.spacing.xl,
   },
   titleContainer: {
     gap: 12,
   },
   content: {
-    padding: 16,
-    gap: 24,
+    padding: theme.spacing.md,
+    gap: theme.spacing.xl,
   },
   bodyText: {
-    fontSize: 14,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 22,
-    marginBottom: 16,
+    marginBottom: theme.spacing.md,
   },
   exampleText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.7,
-    marginTop: 8,
-    marginBottom: 12,
+    marginTop: theme.spacing.sm,
+    marginBottom: theme.spacing.sm + 4,
     fontStyle: "italic",
   },
   inlineCode: {
     fontFamily: "monospace",
-    backgroundColor: "#2D3748",
+    backgroundColor: theme.colors.background.surface,
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 6,
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
   },
   requirementCard: {
-    backgroundColor: "#0D1117",
-    padding: 16,
+    backgroundColor: theme.colors.background.primary,
+    padding: theme.spacing.md,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
   },
   requirementText: {
-    fontSize: 14,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 20,
   },
   linkBox: {
-    backgroundColor: "#1E293B",
-    padding: 12,
+    backgroundColor: theme.colors.background.secondary,
+    padding: theme.spacing.sm + 4,
     borderRadius: 6,
     borderLeftWidth: 3,
-    borderLeftColor: "#3B82F6",
-    marginBottom: 8,
+    borderLeftColor: theme.colors.action.info,
+    marginBottom: theme.spacing.sm,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: theme.spacing.sm,
   },
   linkText: {
-    fontSize: 14,
-    color: "#3B82F6",
-    fontWeight: "600",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.action.info,
+    fontWeight: theme.typography.weights.semibold,
   },
   troubleshootingCard: {
-    backgroundColor: "#0D1117",
-    padding: 16,
+    backgroundColor: theme.colors.background.primary,
+    padding: theme.spacing.md,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
   },
   troubleshootingTitle: {
-    fontSize: 14,
-    color: "#F8F7F4",
-    fontWeight: "600",
-    marginBottom: 8,
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
+    fontWeight: theme.typography.weights.semibold,
+    marginBottom: theme.spacing.sm,
   },
   troubleshootingText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 18,
     marginBottom: 4,
   },
   bold: {
-    fontWeight: "600",
+    fontWeight: theme.typography.weights.semibold,
   },
   infoBox: {
     backgroundColor: "#1E3A8A",
-    padding: 16,
+    padding: theme.spacing.md,
     borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: "#3B82F6",
-    marginTop: 12,
+    borderLeftColor: theme.colors.action.info,
+    marginTop: theme.spacing.sm,
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 12,
+    gap: theme.spacing.sm + 4,
   },
   infoText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.9,
     lineHeight: 20,
     flex: 1,
   },
   configSection: {
-    marginBottom: 20,
-    paddingBottom: 16,
+    marginBottom: theme.spacing.xl,
+    paddingBottom: theme.spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   configTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#F8F7F4",
-    marginBottom: 8,
+    fontSize: theme.typography.sizes.md,
+    fontWeight: theme.typography.weights.semibold,
+    color: theme.colors.text.primary,
+    marginBottom: theme.spacing.sm,
   },
   scrollView: {
     flex: 1,
