@@ -49,7 +49,7 @@ export default function BestPractices() {
         <View style={styles.content}>
           <Section
             title="Writing Effective Prompts"
-            icon={<MessageSquare size={20} color="#3B82F6" />}
+            icon={<MessageSquare size={20} color={theme.colors.action.info} />}
           >
             <Text style={styles.bodyText}>
               Clear and specific prompts lead to better results. Follow these
@@ -77,7 +77,7 @@ export default function BestPractices() {
 
           <Section
             title="Session Management"
-            icon={<FileCode size={20} color="#8B5CF6" />}
+            icon={<FileCode size={20} color={theme.colors.blue[100]} />}
           >
             <Text style={styles.bodyText}>
               Organize your work into logical sessions for better management:
@@ -115,13 +115,13 @@ coder apply`}
 
           <Section
             title="Iterative Development"
-            icon={<Zap size={20} color="#EC4899" />}
+            icon={<Zap size={20} color={theme.colors.accent.softPink} />}
           >
             <Text style={styles.bodyText}>
               Use Coder in an iterative manner to refine your code:
             </Text>
             <View style={styles.alternativeBox}>
-              <Info size={16} color="#3B82F6" />
+              <Info size={16} color={theme.colors.action.info} />
               <Text style={styles.alternativeText}>
                 Start with a basic implementation, then create new sessions to
                 refine and improve your code.
@@ -141,7 +141,7 @@ coder apply`}
 
           <Section
             title="Common Pitfalls to Avoid"
-            icon={<AlertTriangle size={20} color="#F43F5E" />}
+            icon={<AlertTriangle size={20} color={theme.colors.action.error} />}
           >
             <View style={styles.troubleshootingCard}>
               <Text style={styles.troubleshootingTitle}>
@@ -168,7 +168,7 @@ coder apply`}
 
           <Section
             title="Documentation and Comments"
-            icon={<BookOpen size={20} color="#10B981" />}
+            icon={<BookOpen size={20} color={theme.colors.action.success} />}
           >
             <Text style={styles.bodyText}>
               Ask Coder to include documentation and comments in generated code:
@@ -177,7 +177,7 @@ coder apply`}
               {`Create a Python function to process user data. Include docstrings and comments explaining the logic.`}
             </CodeBlock>
             <View style={styles.infoBox}>
-              <Info size={16} color="#3B82F6" />
+              <Info size={16} color={theme.colors.action.info} />
               <Text style={styles.infoText}>
                 Well-documented code is easier to maintain and understand,
                 especially when working in teams.
@@ -203,7 +203,7 @@ coder apply`}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0E14",
+    backgroundColor: theme.colors.background.primary,
   },
   contentContainer: {
     paddingBottom: 40,
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingBottom: 8,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   scrollView: {
     flex: 1,
@@ -226,14 +226,14 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     fontSize: 14,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 22,
     marginBottom: 16,
   },
   exampleText: {
     fontSize: 13,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     opacity: 0.7,
     marginTop: 8,
     marginBottom: 12,
@@ -241,34 +241,34 @@ const styles = StyleSheet.create({
   },
   inlineCode: {
     fontFamily: "monospace",
-    backgroundColor: "#2D3748",
+    backgroundColor: theme.colors.background.surface,
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 6,
     fontSize: 13,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
   },
   requirementCard: {
-    backgroundColor: "#0D1117",
+    backgroundColor: theme.colors.background.secondary,
     padding: 16,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
     marginBottom: 16,
   },
   requirementText: {
     fontSize: 14,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 20,
     marginBottom: 4,
   },
   alternativeBox: {
-    backgroundColor: "#1E293B",
+    backgroundColor: theme.colors.navy[100],
     padding: 12,
     borderRadius: 6,
     borderLeftWidth: 3,
-    borderLeftColor: "#3B82F6",
+    borderLeftColor: theme.colors.action.info,
     marginBottom: 16,
     flexDirection: "row",
     alignItems: "flex-start",
@@ -276,31 +276,31 @@ const styles = StyleSheet.create({
   },
   alternativeText: {
     fontSize: 13,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 18,
     flex: 1,
   },
   fileStructureBox: {
-    backgroundColor: "#0D1117",
+    backgroundColor: theme.colors.background.secondary,
     padding: 16,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
     marginTop: 8,
   },
   fileStructureText: {
     fontSize: 12,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     fontFamily: "monospace",
     lineHeight: 16,
   },
   infoBox: {
-    backgroundColor: "#1E3A8A",
+    backgroundColor: theme.colors.navy[100],
     padding: 16,
     borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: "#3B82F6",
+    borderLeftColor: theme.colors.action.info,
     marginTop: 12,
     flexDirection: "row",
     alignItems: "flex-start",
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 13,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     opacity: 0.9,
     lineHeight: 20,
     flex: 1,
@@ -317,30 +317,30 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   configTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     marginBottom: 8,
   },
   troubleshootingCard: {
-    backgroundColor: "#0D1117",
+    backgroundColor: theme.colors.background.secondary,
     padding: 16,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
   },
   troubleshootingTitle: {
     fontSize: 14,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     fontWeight: "600",
     marginBottom: 8,
   },
   troubleshootingText: {
     fontSize: 13,
-    color: "#F8F7F4",
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 18,
     marginBottom: 4,
