@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     padding: theme.spacing.lg,
     flexDirection: "row",
     alignItems: "center",
-    ...theme.shadows.lg,
+    ...theme.shadows.md,
     borderWidth: 1,
     borderColor: theme.colors.background.surface,
   },

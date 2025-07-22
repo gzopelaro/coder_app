@@ -8,13 +8,13 @@ import {
   FlatList,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Section from "../components/HomeSection";
 import {
   homeSections,
   HomeNavigationProp,
   SectionItem,
 } from "../data/homeSections";
 import { theme } from "../theme";
+import HomeSection from "../components/HomeSection";
 
 export default function Home() {
   const navigation = useNavigation<HomeNavigationProp>();
@@ -26,8 +26,8 @@ export default function Home() {
     item: SectionItem;
     index: number;
   }) => (
-    <View style={{ marginTop: theme.spacing.md }}>
-      <Section
+    <View style={{ margin: theme.spacing.sm }}>
+      <HomeSection
         title={item.title}
         subtitle={item.subtitle}
         iconComponent={item.iconComponent}
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flexGrow: 1,
-    padding: theme.spacing.lg,
+    padding: theme.spacing.md,
   },
   iconContainer: {
     width: 100,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: theme.spacing.lg,
-    ...theme.shadows.lg,
+    ...theme.shadows.md,
   },
   logo: {
     width: "100%",
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   header: {
     alignItems: "center",
     marginBottom: theme.spacing.md,
-    paddingTop: theme.spacing.lg,
+    paddingTop: theme.spacing.xxl,
   },
   title: {
     fontSize: theme.typography.sizes.xxxl,
