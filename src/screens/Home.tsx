@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     ...theme.shadows.md,
   },
   logo: {
-    width: 80,
+    width: 100,
     height: 60,
   },
   header: {
