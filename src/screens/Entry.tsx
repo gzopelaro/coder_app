@@ -1,9 +1,18 @@
-import React from "react";
-import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useEffect, useRef } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Animated,
+  Dimensions,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/RootStack";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { colors, spacing, typography, shadows } from "../theme";
 
 type EntryNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -12,84 +21,150 @@ type EntryNavigationProp = NativeStackNavigationProp<
 
 export default function Entry() {
   const navigation = useNavigation<EntryNavigationProp>();
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(50)).current;
+  const buttonScaleAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    // Fade in and slide up animation
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   const handleStartNow = () => {
-    navigation.navigate(ScreenNames.Home);
+    // Button press animation
+    Animated.sequence([
+      Animated.timing(buttonScaleAnim, {
+        toValue: 0.95,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(buttonScaleAnim, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      navigation.navigate(ScreenNames.Home);
+    });
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.iconContainer}>
-        <Image
-          source={require("../../assets/ciandt_logo.png")}
-          style={styles.logo}
-        />
-      </View>
-      <Text style={styles.title}>Coder AI</Text>
-      <Text style={styles.subtitle}>Building your future with Coder.</Text>
+      <Animated.View
+        style={[
+          styles.content,
+          {
+            opacity: fadeAnim,
+            transform: [{ translateY: slideAnim }],
+          },
+        ]}
+      >
+        <View style={styles.iconContainer}>
+          <Image
+            source={require("../../assets/ciandt_logo.png")}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+        </View>
 
-      <TouchableOpacity style={styles.card} onPress={handleStartNow}>
-        <Text style={styles.cardText}>Start now</Text>
-      </TouchableOpacity>
+        <Text style={styles.title}>Coder AI</Text>
+        <Text style={styles.subtitle}>Building your future with Coder.</Text>
+
+        <Animated.View style={{ transform: [{ scale: buttonScaleAnim }] }}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleStartNow}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.buttonText}>Start now</Text>
+          </TouchableOpacity>
+        </Animated.View>
+      </Animated.View>
+
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>© 2025 CI&T</Text>
+      </View>
     </View>
   );
 }
 
+const { width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#101923",
+    backgroundColor: colors.background.primary,
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  content: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
     width: "100%",
+    paddingHorizontal: spacing.lg,
   },
   iconContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 100,
-    backgroundColor: "#1E293B",
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    backgroundColor: colors.background.secondary,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
-    shadowColor: "#F8F7F4",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 5,
+    marginBottom: spacing.md,
+    ...shadows.md,
   },
   logo: {
-    width: "100%",
-    height: "100%",
-    maxHeight: 60,
-    maxWidth: 80,
+    width: 100,
+    height: 60,
   },
   title: {
-    fontSize: 36,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-    marginBottom: 10,
+    fontSize: typography.sizes.display,
+    fontWeight: typography.weights.bold,
+    color: colors.text.primary,
+    marginBottom: spacing.sm,
+    textAlign: "center",
   },
   subtitle: {
-    fontSize: 18,
-    color: "#F8F7F4",
-    opacity: 0.8,
+    fontSize: typography.sizes.lg,
+    color: colors.text.secondary,
+    marginBottom: spacing.lg,
+    textAlign: "center",
   },
-  card: {
-    backgroundColor: "#1E293B",
-    padding: 16,
-    borderRadius: 10,
-    width: "90%",
+  button: {
+    backgroundColor: colors.primary,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.xxl,
+    borderRadius: 12,
+    width: width * 0.8,
     alignItems: "center",
-    marginVertical: 20,
-    shadowColor: "#F8F7F4",
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 5,
+    ...shadows.md,
   },
-  cardText: {
-    color: "#F8F7F4",
-    fontSize: 16,
-    fontWeight: "bold",
+  buttonText: {
+    color: colors.white,
+    fontSize: typography.sizes.lg,
+    fontWeight: typography.weights.bold,
+  },
+  footer: {
+    width: "100%",
+    paddingVertical: spacing.lg,
+    alignItems: "center",
+  },
+  footerText: {
+    color: colors.text.secondary,
+    fontSize: typography.sizes.sm,
+    opacity: 0.7,
   },
 });

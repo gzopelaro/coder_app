@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   FlatList,
+  Animated,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -16,8 +17,75 @@ import {
 import { theme } from "../theme";
 import HomeSection from "../components/HomeSection";
 
+interface AnimatedSectionProps {
+  item: SectionItem;
+  index: number;
+  onPress: () => void;
+}
+
+const AnimatedSection: React.FC<AnimatedSectionProps> = ({
+  item,
+  index,
+  onPress,
+}) => {
+  const itemFadeAnim = useRef(new Animated.Value(0)).current;
+  const itemSlideAnim = useRef(new Animated.Value(20)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(itemFadeAnim, {
+        toValue: 1,
+        duration: 500,
+        delay: 300 + index * 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(itemSlideAnim, {
+        toValue: 0,
+        duration: 500,
+        delay: 300 + index * 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [itemFadeAnim, itemSlideAnim, index]);
+
+  return (
+    <Animated.View
+      style={{
+        margin: theme.spacing.sm,
+        opacity: itemFadeAnim,
+        transform: [{ translateY: itemSlideAnim }],
+      }}
+    >
+      <HomeSection
+        title={item.title}
+        subtitle={item.subtitle}
+        iconComponent={item.iconComponent}
+        iconColor={item.iconColor}
+        onPress={onPress}
+      />
+    </Animated.View>
+  );
+};
+
 export default function Home() {
   const navigation = useNavigation<HomeNavigationProp>();
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(30)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [fadeAnim, slideAnim]);
 
   const renderSection = ({
     item,
@@ -26,27 +94,33 @@ export default function Home() {
     item: SectionItem;
     index: number;
   }) => (
-    <View style={{ margin: theme.spacing.sm }}>
-      <HomeSection
-        title={item.title}
-        subtitle={item.subtitle}
-        iconComponent={item.iconComponent}
-        iconColor={item.iconColor}
-        onPress={() => navigation.navigate(item.navigateTo)}
-      />
-    </View>
+    <AnimatedSection
+      item={item}
+      index={index}
+      onPress={() => navigation.navigate(item.navigateTo)}
+    />
   );
 
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
+      showsVerticalScrollIndicator={false}
     >
-      <View style={styles.header}>
+      <Animated.View
+        style={[
+          styles.header,
+          {
+            opacity: fadeAnim,
+            transform: [{ translateY: slideAnim }],
+          },
+        ]}
+      >
         <View style={styles.iconContainer}>
           <Image
             source={require("../../assets/ciandt_logo.png")}
             style={styles.logo}
+            resizeMode="contain"
           />
         </View>
         <Text style={styles.title}>Coder CLI Tutorial</Text>
@@ -56,7 +130,7 @@ export default function Home() {
         <Text style={styles.description}>
           Optimizing time, increasing efficiency
         </Text>
-      </View>
+      </Animated.View>
 
       <View style={styles.sectionsContainer}>
         <FlatList
@@ -64,6 +138,7 @@ export default function Home() {
           renderItem={renderSection}
           keyExtractor={(item) => item.id}
           scrollEnabled={false}
+          contentContainerStyle={styles.listContainer}
         />
       </View>
     </ScrollView>
@@ -80,9 +155,9 @@ const styles = StyleSheet.create({
     padding: theme.spacing.md,
   },
   iconContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 100,
+    width: 110,
+    height: 110,
+    borderRadius: 55,
     backgroundColor: theme.colors.background.secondary,
     alignItems: "center",
     justifyContent: "center",
@@ -90,14 +165,12 @@ const styles = StyleSheet.create({
     ...theme.shadows.md,
   },
   logo: {
-    width: "100%",
-    height: "100%",
-    maxHeight: 60,
-    maxWidth: 80,
+    width: 80,
+    height: 60,
   },
   header: {
     alignItems: "center",
-    marginBottom: theme.spacing.md,
+    marginBottom: theme.spacing.xl,
     paddingTop: theme.spacing.xxl,
   },
   title: {
@@ -109,8 +182,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: theme.typography.sizes.lg,
-    color: theme.colors.text.primary,
-    opacity: 0.9,
+    color: theme.colors.text.secondary,
     marginBottom: theme.spacing.sm,
     textAlign: "center",
   },
@@ -122,5 +194,9 @@ const styles = StyleSheet.create({
   },
   sectionsContainer: {
     flex: 1,
+    width: "100%",
+  },
+  listContainer: {
+    paddingBottom: theme.spacing.lg,
   },
 });
