@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Copy } from "lucide-react-native";
 import * as Clipboard from "expo-clipboard";
+import Toast from "react-native-toast-message";
 
 interface CodeBlockProps {
   children: string;
@@ -11,7 +12,12 @@ interface CodeBlockProps {
 const CodeBlock: React.FC<CodeBlockProps> = ({ children, title }) => {
   const copyToClipboard = async (text: string) => {
     await Clipboard.setStringAsync(text);
-    Alert.alert("Copied!", "Code copied to clipboard");
+    Toast.show({
+      type: "success",
+      text1: "Copied!",
+      text2: "Code copied to clipboard",
+      position: "bottom",
+    });
   };
 
   return (
