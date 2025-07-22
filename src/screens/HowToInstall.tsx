@@ -63,7 +63,7 @@ export default function HowToInstall() {
         <View style={styles.content}>
           <Section
             title="Requirements"
-            icon={<ClipboardList size={20} color="#F59E0B" />}
+            icon={<ClipboardList size={20} color={theme.colors.action.warning} />}
           >
             <View style={styles.requirementCard}>
               <Text style={styles.requirementText}>
@@ -74,7 +74,7 @@ export default function HowToInstall() {
 
           <Section
             title="Step 1: Install the Coder Package"
-            icon={<Package size={20} color="#3B82F6" />}
+            icon={<Package size={20} color={theme.colors.action.info} />}
           >
             <Text style={styles.bodyText}>
               Execute the following command in your terminal to install the
@@ -88,7 +88,7 @@ export default function HowToInstall() {
 
           <Section
             title="Step 2: Verify Installation"
-            icon={<CheckCircle size={20} color="#10B981" />}
+            icon={<CheckCircle size={20} color={theme.colors.action.success} />}
           >
             <Text style={styles.bodyText}>
               Check if the <Text style={styles.inlineCode}>coder</Text> command
@@ -96,7 +96,7 @@ export default function HowToInstall() {
             </Text>
             <CodeBlock title="Verification Command">coder --version</CodeBlock>
             <View style={styles.infoBox}>
-              <Info size={16} color="#3B82F6" />
+              <Info size={16} color={theme.colors.action.info} />
               <Text style={styles.infoText}>
                 If the terminal returns the Coder version, you're all set! If
                 you get an error, continue with Step 3.
@@ -117,7 +117,7 @@ export default function HowToInstall() {
             <View style={styles.platformSection}>
               <View style={styles.platformHeader}>
                 <View style={styles.platformIconBadge}>
-                  <Grid2X2 size={16} color="#F8F7F4" />
+                  <Grid2X2 size={16} color={theme.colors.text.primary} />
                 </View>
                 <Text style={styles.platformTitle}>Windows Users</Text>
               </View>
@@ -143,7 +143,7 @@ set PATH=%PATH%;%HOMEPATH%\\AppData\\Roaming\\Python\\Python310\\Scripts`}
             <View style={styles.platformSection}>
               <View style={styles.platformHeader}>
                 <View style={styles.platformIconBadge}>
-                  <Apple size={16} color="#F8F7F4" />
+                  <Apple size={16} color={theme.colors.text.primary} />
                 </View>
                 <Text style={styles.platformTitle}>macOS & Linux Users</Text>
               </View>
@@ -258,153 +258,153 @@ source ~/.bashrc`}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0E14",
+    backgroundColor: theme.colors.background.primary,
   },
   contentContainer: {
-    paddingBottom: 40,
+    paddingBottom: theme.spacing.xxl * 2,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingHorizontal: theme.spacing.md,
+    paddingTop: theme.spacing.md,
+    paddingBottom: theme.spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   scrollView: {
     flex: 1,
   },
   content: {
-    padding: 16,
-    gap: 24,
+    padding: theme.spacing.md,
+    gap: theme.spacing.xl,
   },
   bodyText: {
-    fontSize: 14,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 22,
-    marginBottom: 16,
+    marginBottom: theme.spacing.md,
   },
   inlineCode: {
     fontFamily: "monospace",
-    backgroundColor: "#2D3748",
+    backgroundColor: theme.colors.background.surface,
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 6,
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
   },
   requirementCard: {
-    backgroundColor: "#0D1117",
-    padding: 16,
+    backgroundColor: theme.colors.background.primary,
+    padding: theme.spacing.md,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
   },
   requirementText: {
-    fontSize: 14,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 20,
   },
   platformSection: {
-    marginTop: 16,
-    marginBottom: 16,
+    marginTop: theme.spacing.md,
+    marginBottom: theme.spacing.md,
   },
   platformHeader: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
-    marginBottom: 8,
+    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.sm,
   },
   platformIconBadge: {
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: "#3B82F6",
+    backgroundColor: theme.colors.action.info,
     justifyContent: "center",
     alignItems: "center",
   },
   platformTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.lg,
+    fontWeight: theme.typography.weights.semibold,
+    color: theme.colors.text.primary,
   },
   configSection: {
-    marginBottom: 20,
-    paddingBottom: 16,
+    marginBottom: theme.spacing.xl,
+    paddingBottom: theme.spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   configTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#F8F7F4",
-    marginBottom: 8,
+    fontSize: theme.typography.sizes.md,
+    fontWeight: theme.typography.weights.semibold,
+    color: theme.colors.text.primary,
+    marginBottom: theme.spacing.sm,
   },
   exampleText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.7,
-    marginTop: 8,
-    marginBottom: 12,
+    marginTop: theme.spacing.sm,
+    marginBottom: theme.spacing.sm + 4,
     fontStyle: "italic",
   },
   infoBox: {
     backgroundColor: "#1E3A8A",
-    padding: 16,
+    padding: theme.spacing.md,
     borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: "#3B82F6",
-    marginTop: 12,
+    borderLeftColor: theme.colors.action.info,
+    marginTop: theme.spacing.sm,
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 12,
+    gap: theme.spacing.sm + 4,
   },
   infoText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.9,
     lineHeight: 20,
     flex: 1,
   },
   troubleshootingCard: {
-    backgroundColor: "#0D1117",
-    padding: 16,
+    backgroundColor: theme.colors.background.primary,
+    padding: theme.spacing.md,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#2D3748",
+    borderColor: theme.colors.background.surface,
   },
   troubleshootingTitle: {
-    fontSize: 14,
-    color: "#F8F7F4",
-    fontWeight: "600",
-    marginBottom: 8,
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
+    fontWeight: theme.typography.weights.semibold,
+    marginBottom: theme.spacing.sm,
   },
   troubleshootingText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 18,
     marginBottom: 4,
   },
   bold: {
-    fontWeight: "600",
+    fontWeight: theme.typography.weights.semibold,
   },
   nextButton: {
-    backgroundColor: "#3B82F6",
+    backgroundColor: theme.colors.action.info,
     borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    paddingVertical: theme.spacing.md,
+    paddingHorizontal: theme.spacing.xl,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: 16,
+    marginTop: theme.spacing.md,
   },
   nextButtonText: {
-    color: "#F8F7F4",
-    fontSize: 16,
-    fontWeight: "600",
+    color: theme.colors.text.primary,
+    fontSize: theme.typography.sizes.md,
+    fontWeight: theme.typography.weights.semibold,
   },
 });
