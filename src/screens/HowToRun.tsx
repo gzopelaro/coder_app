@@ -55,7 +55,7 @@ export default function HowToRun() {
         <View style={styles.content}>
           <Section
             title="Initialize Coder"
-            icon={<Settings size={20} color="#3B82F6" />}
+            icon={<Settings size={20} color={theme.colors.action.info} />}
           >
             <Text style={styles.bodyText}>
               Run the following command in an empty directory or your project
@@ -63,7 +63,7 @@ export default function HowToRun() {
             </Text>
             <CodeBlock title="Initialize Command">coder init</CodeBlock>
             <View style={styles.infoBox}>
-              <Info size={16} color="#3B82F6" />
+              <Info size={16} color={theme.colors.action.info} />
               <Text style={styles.infoText}>
                 This command sets up the initial configuration for your Coder
                 workspace.
@@ -73,7 +73,7 @@ export default function HowToRun() {
 
           <Section
             title="Coder 'Hello World!'"
-            icon={<Code size={20} color="#F59E0B" />}
+            icon={<Code size={20} color={theme.colors.action.warning} />}
           >
             <Text style={styles.bodyText}>
               Follow these steps to create a simple "Hello World" application
@@ -84,7 +84,7 @@ export default function HowToRun() {
           <Section
             title="Step 1: Create a New Coder Session"
             icon={<Text style={styles.stepNumber}>1</Text>}
-            iconBackgroundColor="transparent"
+            iconBackgroundColor={theme.colors.transparent}
           >
             <Text style={styles.bodyText}>
               Execute the following command to create a new session with the
@@ -102,7 +102,7 @@ export default function HowToRun() {
           <Section
             title="Step 2: Add Content to the App"
             icon={<Text style={styles.stepNumber}>2</Text>}
-            iconBackgroundColor="transparent"
+            iconBackgroundColor={theme.colors.transparent}
           >
             <Text style={styles.bodyText}>
               Edit the file to add the following content:
@@ -111,7 +111,7 @@ export default function HowToRun() {
               {`echo "say hello from app.py" > .coder/sessions/name-of-the-section/0002__user.md`}
             </CodeBlock>
             <View style={styles.alternativeBox}>
-              <FileText size={16} color="#F59E0B" />
+              <FileText size={16} color={theme.colors.action.warning} />
               <Text style={styles.alternativeText}>
                 You can also write in the user.md file directly, by accessing
                 the path from above and writing manually the command prompt you
@@ -123,7 +123,7 @@ export default function HowToRun() {
           <Section
             title="Step 3: Run the Coder Session"
             icon={<Text style={styles.stepNumber}>3</Text>}
-            iconBackgroundColor="transparent"
+            iconBackgroundColor={theme.colors.transparent}
           >
             <Text style={styles.bodyText}>
               Execute the following command to run the Coder session:
@@ -134,7 +134,7 @@ export default function HowToRun() {
           <Section
             title="Step 4: Review the Assistant Result"
             icon={<Text style={styles.stepNumber}>4</Text>}
-            iconBackgroundColor="transparent"
+            iconBackgroundColor={theme.colors.transparent}
           >
             <Text style={styles.bodyText}>
               You can review the assistant's result in the file:
@@ -143,7 +143,7 @@ export default function HowToRun() {
               .coder/sessions/name-of-the-section/0002_assistant.md
             </CodeBlock>
             <View style={styles.infoBox}>
-              <Info size={16} color="#3B82F6" />
+              <Info size={16} color={theme.colors.action.info} />
               <Text style={styles.infoText}>
                 This file contains the AI assistant's response and generated
                 code based on your prompt.
@@ -154,7 +154,7 @@ export default function HowToRun() {
           <Section
             title="Step 5: Apply the Coder Session"
             icon={<Text style={styles.stepNumber}>5</Text>}
-            iconBackgroundColor="transparent"
+            iconBackgroundColor={theme.colors.transparent}
           >
             <Text style={styles.bodyText}>
               Execute the following command to apply the Coder session:
@@ -169,7 +169,7 @@ export default function HowToRun() {
           <Section
             title="Step 6: Execute the Python Script"
             icon={<Text style={styles.stepNumber}>6</Text>}
-            iconBackgroundColor="transparent"
+            iconBackgroundColor={theme.colors.transparent}
           >
             <Text style={styles.bodyText}>
               Finally, run the Python script to see the output:
@@ -179,7 +179,7 @@ export default function HowToRun() {
 
           <Section
             title="Complete Example"
-            icon={<CheckCircle size={20} color="#10B981" />}
+            icon={<CheckCircle size={20} color={theme.colors.action.success} />}
           >
             <Text style={styles.bodyText}>
               Here's the complete workflow in sequence:
@@ -207,7 +207,7 @@ python app.py`}
 
           <Section
             title="Additional Commands"
-            icon={<Terminal size={20} color="#10B981" />}
+            icon={<Terminal size={20} color={theme.colors.action.success} />}
           >
             <View style={styles.configSection}>
               <Text style={styles.configTitle}>List All Sessions</Text>
@@ -227,7 +227,7 @@ python app.py`}
 
           <Section
             title="File Structure"
-            icon={<FileText size={20} color="#8B5CF6" />}
+            icon={<FileText size={20} color={theme.colors.blue[100]} />}
           >
             <Text style={styles.bodyText}>
               After running the commands, your directory structure will look
@@ -269,56 +269,56 @@ python app.py`}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0E14",
+    backgroundColor: theme.colors.background.primary,
   },
   contentContainer: {
-    paddingBottom: 40,
+    paddingBottom: theme.spacing.xxl * 2,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingHorizontal: theme.spacing.md,
+    paddingTop: theme.spacing.md,
+    paddingBottom: theme.spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   scrollView: {
     flex: 1,
   },
   content: {
-    padding: 16,
-    gap: 24,
+    padding: theme.spacing.md,
+    gap: theme.spacing.lg + 4,
   },
   bodyText: {
-    fontSize: 14,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 22,
-    marginBottom: 16,
+    marginBottom: theme.spacing.md,
   },
   exampleText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.7,
-    marginTop: 8,
-    marginBottom: 12,
+    marginTop: theme.spacing.sm,
+    marginBottom: theme.spacing.md - 4,
     fontStyle: "italic",
   },
   inlineCode: {
     fontFamily: "monospace",
-    backgroundColor: "#2D3748",
+    backgroundColor: theme.colors.background.surface,
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 6,
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
   },
   stepNumber: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#F8F7F4",
-    backgroundColor: "#3B82F6",
+    fontSize: theme.typography.sizes.md,
+    fontWeight: theme.typography.weights.bold,
+    color: theme.colors.text.primary,
+    backgroundColor: theme.colors.action.info,
     width: 28,
     height: 28,
     borderRadius: 14,
@@ -327,65 +327,65 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   alternativeBox: {
-    backgroundColor: "#1E293B",
-    padding: 12,
+    backgroundColor: theme.colors.background.secondary,
+    padding: theme.spacing.md - 4,
     borderRadius: 6,
     borderLeftWidth: 3,
-    borderLeftColor: "#F59E0B",
-    marginTop: 8,
+    borderLeftColor: theme.colors.action.warning,
+    marginTop: theme.spacing.sm,
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 8,
+    gap: theme.spacing.sm,
   },
   alternativeText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.8,
     lineHeight: 18,
     flex: 1,
   },
   fileStructureBox: {
-    backgroundColor: "#0D1117",
-    padding: 16,
+    backgroundColor: theme.colors.background.primary,
+    padding: theme.spacing.md,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#2D3748",
-    marginTop: 8,
+    borderColor: theme.colors.background.surface,
+    marginTop: theme.spacing.sm,
   },
   fileStructureText: {
-    fontSize: 12,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs,
+    color: theme.colors.text.primary,
     fontFamily: "monospace",
     lineHeight: 16,
   },
   infoBox: {
-    backgroundColor: "#1E3A8A",
-    padding: 16,
+    backgroundColor: theme.colors.navy[100],
+    padding: theme.spacing.md,
     borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: "#3B82F6",
-    marginTop: 12,
+    borderLeftColor: theme.colors.action.info,
+    marginTop: theme.spacing.md - 4,
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 12,
+    gap: theme.spacing.md - 4,
   },
   infoText: {
-    fontSize: 13,
-    color: "#F8F7F4",
+    fontSize: theme.typography.sizes.xs + 1,
+    color: theme.colors.text.primary,
     opacity: 0.9,
     lineHeight: 20,
     flex: 1,
   },
   configSection: {
-    marginBottom: 20,
-    paddingBottom: 16,
+    marginBottom: theme.spacing.lg,
+    paddingBottom: theme.spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: "#2D3748",
+    borderBottomColor: theme.colors.background.surface,
   },
   configTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#F8F7F4",
-    marginBottom: 8,
+    fontSize: theme.typography.sizes.md,
+    fontWeight: theme.typography.weights.semibold,
+    color: theme.colors.text.primary,
+    marginBottom: theme.spacing.sm,
   },
 });
