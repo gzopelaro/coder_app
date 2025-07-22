@@ -5,7 +5,7 @@ export const colors = {
 
   background: {
     primary: "#101923",
-    secondary: "#1E293B",
+    secondary: "#1F2937",
     surface: "#2D3748",
     card: "#242459",
   },
