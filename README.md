@@ -33,10 +33,9 @@ Simplifies the learning curve for Coder CLI by providing a structured, accessibl
 ### Prerequisites
 
 - Node.js (v14 or newer)
-- npm or yarn
+- yarn
 - Expo CLI
 - iOS Simulator or Android Emulator (for development)
-- Physical iOS or Android device (for testing)
 
 ### Installation
 
