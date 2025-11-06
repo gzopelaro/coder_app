@@ -50,20 +50,12 @@ cd coder-app
 2. **Install dependencies**
 
 ```bash
-# Using npm
-npm install
-
-# Using yarn
 yarn install
 ```
 
 3. **Start the development server**
 
 ```bash
-# Using npm
-npm start
-
-# Using yarn
 yarn start
 ```
 
@@ -90,12 +82,10 @@ yarn start
 
 ### Available Scripts
 
-- `yarn start` or `npm start`: Start the Expo development server
-- `yarn android` or `npm run android`: Run on Android emulator/device
-- `yarn ios` or `npm run ios`: Run on iOS simulator/device
+- `yarn start`: Start the Expo development server
+- `yarn android`: Run on Android emulator/device
+- `yarn ios`: Run on iOS simulator/device
 - `yarn web` or `npm run web`: Run in web browser
-- `yarn test` or `npm test`: Run tests
-- `yarn build` or `npm run build`: Build the app for production
 
 Contributions are welcome and appreciated! Here's how you can contribute:
 
