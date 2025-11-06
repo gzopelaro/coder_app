@@ -84,7 +84,7 @@ yarn start
 - `yarn start`: Start the Expo development server
 - `yarn android`: Run on Android emulator/device
 - `yarn ios`: Run on iOS simulator/device
-- `yarn web` or `npm run web`: Run in web browser
+- `yarn web`: Run in web browser
 
 Contributions are welcome and appreciated! Here's how you can contribute:
 
